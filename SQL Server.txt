@@ -1,0 +1,327 @@
+CREATE DATABASE students;
+USE students;
+
+CREATE TABLE studentsinfo(
+	StudentID INT,
+	StudentName VARCHAR(800),
+	ParentName VARCHAR(800),
+	PhoneNo BIGINT,
+	AddresOfStudent VARCHAR(800),
+	City VARCHAR(800),
+	Address VARCHAR(800)
+);
+SELECT * FROM studentsinfo;
+
+DROP TABLE studentsinfo;
+
+DROP DATABASE students;
+
+ALTER TABLE studentsinfo ADD BloodGroup VARCHAR(800);
+
+ALTER TABLE studentsinfo DROP COLUMN BloodGroup;
+
+ALTER TABLE studentsinfo ADD dob DATE;
+
+ALTER TABLE studentsinfo ALTER COLUMN dob DATETIME;
+
+SELECT * FROM studentsinfo;
+
+ALTER TABLE studentsinfo DROP COLUMN dob;
+
+INSERT INTO studentsinfo VALUES(1,'Jaswanth','Venkatarao',9014100541,'Vijayawada','Narasaraopet','Kakathiya Nagar');
+
+TRUNCATE TABLE studentsinfo;
+
+sp_rename 'studentsinfo','StudentInfo';
+
+-------------------------------------------------------
+CREATE TABLE studentsinfo(
+	StudentID INT,
+	StudentName VARCHAR(800) NOT NULL,
+	ParentName VARCHAR(800),
+	PhoneNo BIGINT,
+	AddresOfStudent VARCHAR(800) NOT NULL,
+	City VARCHAR(800),
+	Address VARCHAR(800)
+);
+
+INSERT INTO StudentInfo VALUES(2,'Sathvika','Sudha',9876543210,'Vijayawada','Vijayawada','Vijayawada');
+SELECT * FROM StudentInfo;
+
+ALTER TABLE StudentInfo ALTER COLUMN PhoneNo BIGINT NOT NULL;
+INSERT INTO StudentInfo VALUES(1,'Jaswanth','Anjali',9014100541,'Vijayawada','Narasaraopet','Kakathiya Nagar');
+
+DELETE FROM StudentInfo WHERE StudentID=2;
+
+DROP TABLE StudentInfo;
+DROP TABLE studentsinfo;
+-------------------------------------------------------
+CREATE TABLE studentsinfo(
+	StudentID INT UNIQUE NOT NULL,
+	StudentName VARCHAR(800) NOT NULL,
+	ParentName VARCHAR(800),
+	PhoneNo BIGINT,
+	AddresOfStudent VARCHAR(800) NOT NULL,
+	City VARCHAR(800),
+	Address VARCHAR(800)
+	PRIMARY KEY(StudentID)
+);
+
+
+---------------------------------------------------------
+CREATE TABLE studentsinfo(
+	StudentID INT NOT NULL,
+	StudentName VARCHAR(800) NOT NULL,
+	ParentName VARCHAR(800),
+	PhoneNo BIGINT,
+	AddresOfStudent VARCHAR(800) NOT NULL,
+	City VARCHAR(800),
+	Address VARCHAR(800)
+	CONSTRAINT UC_CONSTRAINT UNIQUE(StudentID,PhoneNo)
+);
+
+------------------------------------------------------------
+ALTER TABLE studentsinfo ADD UNIQUE(StudentID);
+
+ALTER TABLE studentsinfo DROP CONSTRAINT UC_CONSTRAINT;
+------------------------------------------------------------------
+CREATE TABLE studentsinfo(
+	StudentID INT NOT NULL,
+	StudentName VARCHAR(800) NOT NULL,
+	ParentName VARCHAR(800),
+	PhoneNo BIGINT,
+	AddresOfStudent VARCHAR(800) NOT NULL,
+	City VARCHAR(800),
+	Country VARCHAR(800) CHECK (Country='India')
+	
+);
+
+SELECT * FROM studentsinfo;
+
+INSERT INTO studentsinfo VALUES(1,'Jaswanth','Anjali',9014100541,'Vijayawada','Narasaraopet','USA');
+INSERT INTO studentsinfo VALUES(2,'Sathvika','Sudha',9876543210,'Vijayawada','Vijayawada','India');
+
+ALTER TABLE studentsinfo ADD CHECK (Country='India');
+ALTER TABLE studentsinfo ADD CONSTRAINT uc_CHECK CHECK (Country='India');
+
+ALTER TABLE studentsinfo DROP CONSTRAINT uv_CHECK;
+
+----------------------------------------------------------
+CREATE TABLE studentsinfo(
+	StudentID INT NOT NULL,
+	StudentName VARCHAR(800) NOT NULL,
+	ParentName VARCHAR(800),
+	PhoneNo BIGINT,
+	AddresOfStudent VARCHAR(800) NOT NULL,
+	City VARCHAR(800),
+	Country VARCHAR(800) DEFAULT 'India'
+);
+
+INSERT INTO studentsinfo VALUES(1,'Jaswanth','Anjali',9014100541,'Vijayawada','Narasaraopet','USA');
+SELECT * FROM studentsinfo;
+INSERT INTO studentsinfo VALUES(1,'Jaswanth','Anjali',9014100541,'Vijayawada','Narasaraopet',DEFAULT);
+DROP TABLE studentsinfo;
+
+ALTER TABLE studentsinfo ADD CONSTRAINT defaultcountry DEFAULT 'India' for Country;
+
+ALTER TABLE studentsinfo DROP CONSTRAINT defaultcountry;
+
+CREATE INDEX IDX_student ON studentsinfo (StudentName);
+DROP INDEX studentsinfo.IDX_student;
+---------------------------------------------------------------------------------
+CREATE TABLE studentsinfo(
+	StudentID INT UNIQUE NOT NULL,
+	StudentName VARCHAR(800),
+	ParentName VARCHAR(800),
+	PhoneNo BIGINT,
+	AddresOfStudent VARCHAR(800),
+	City VARCHAR(800),
+	Country VARCHAR(800)
+	PRIMARY KEY(StudentID)
+);
+INSERT INTO studentsinfo VALUES(1,'Jaswanth','Anjali',9014100541,'Silicon Vallay','California','USA');
+INSERT INTO studentsinfo VALUES(2,'Sathvika','Sudha',9876543210,'Vijayawada','Vijayawada','India');
+INSERT INTO studentsinfo VALUES(3,'Divya',NULL,9848880980,'Hydrabad','Karachi','Pakistan');
+INSERT INTO studentsinfo VALUES(4,'Nithin',NULL,1234567890,'Colombo','Colombo','Sri Lanka');
+INSERT INTO studentsinfo VALUES(5,'Prudhvi',NULL,1234567000,'Kathmandu','Kathmandu','Nepal');
+
+SELECT * FROM studentsinfo;
+
+UPDATE studentsinfo SET ParentName='divyamom' WHERE StudentName='Divya';
+UPDATE studentsinfo SET ParentName='Nithinmom' WHERE StudentName='Nithin';
+UPDATE studentsinfo SET ParentName='Prudhvimom' WHERE StudentName='Prudhvi';
+
+DELETE FROM studentsinfo WHERE StudentName='Divya';
+
+SELECT StudentName,PhoneNo,City FROM studentsinfo;
+----------------------------------------------------------------------------------------------
+CREATE TABLE SampleSourceTable(StudentId INT,StudentName VARCHAR(800),Marks INT);
+CREATE TABLE SampleTargetTable(StudentId INT,StudentName VARCHAR(800),Marks INT);
+
+INSERT INTO SampleSourceTable VALUES(1,'Jaswanth',100);
+INSERT INTO SampleSourceTable VALUES(2,'Sathvika',99);
+INSERT INTO SampleSourceTable VALUES(3,'Divya',75);
+SELECT * FROM SampleSourceTable;
+
+INSERT INTO SampleTargetTable VALUES(1,'Nithin',100);
+INSERT INTO SampleTargetTable VALUES(2,'Prudhvi',82);
+INSERT INTO SampleTargetTable VALUES(3,'Divya',75);
+SELECT * FROM SampleTargetTable;
+DROP TABLE SampleTargetTable;
+
+MERGE SampleTargetTable TARGET USING SampleSourceTable SOURCE ON (TARGET.StudentId=SOURCE.StudentId)
+WHEN MATCHED AND TARGET.StudentName<>SOURCE.StudentName OR TARGET.Marks<>SOURCE.Marks
+THEN
+UPDATE SET TARGET.StudentName=Source.StudentName ,TARGET.Marks=Source.Marks
+WHEN NOT MATCHED BY TARGET THEN
+INSERT(Studentid,StudentName,Marks) VALUES (SOURCE.StudentId,SOURCE.StudentName,SOURCE.Marks)
+WHEN NOT MATCHED BY SOURCE THEN
+DELETE;
+
+----------------------------------------------------
+SELECT TOP 3 * FROM studentsinfo;
+
+SELECT DISTINCT StudentName FROM studentsinfo;
+
+SELECT * FROM studentsinfo ORDER BY ParentName;
+SELECT * FROM studentsinfo ORDER BY ParentName DESC;
+
+SELECT COUNT(StudentID),City FROM studentsinfo GROUP BY City;
+SELECT COUNT(StudentID),City FROM studentsinfo GROUP BY City HAVING COUNT(StudentID)=1 ORDER BY COUNT(StudentID);
+
+SELECT * INTO studentbackup FROM studentsinfo;
+SELECT * FROM studentbackup;
+
+SELECT StudentID,COUNT(City) FROM studentsinfo GROUP BY CUBE(StudentId) ORDER BY StudentID;
+-->CUBE is sub total. It is at up
+
+SELECT StudentID,COUNT(City) FROM studentsinfo GROUP BY ROLLUP(StudentID);
+
+
+CREATE TABLE offsetmarks(Marks INT);
+INSERT INTO offsetmarks VALUES(91);
+INSERT INTO offsetmarks VALUES(71);
+INSERT INTO offsetmarks VALUES(69);
+INSERT INTO offsetmarks VALUES(87);
+INSERT INTO offsetmarks VALUES(99);
+SELECT * FROM offsetmarks;
+SELECT * FROM offsetmarks ORDER BY Marks OFFSET 1 ROWS;
+SELECT * FROM offsetmarks ORDER BY Marks OFFSET 2 ROWS FETCH NEXT 2 ROWS ONLY;
+
+CREATE TABLE SupplierTable(
+	SupplierID INT NOT NULL,
+	DaysOfManufacture INT,
+	Cost INT,
+	CustomerID INT,
+	PurchaseID VARCHAR(800)
+);
+
+INSERT INTO SupplierTable VALUES(1,12,1230,11,'P1');
+INSERT INTO SupplierTable VALUES(2,21,1543,22,'P2');
+INSERT INTO SupplierTable VALUES(3,32,2345,11,'P3');
+INSERT INTO SupplierTable VALUES(4,14,8765,22,'P1');
+INSERT INTO SupplierTable VALUES(5,42,3452,33,'P3');
+INSERT INTO SupplierTable VALUES(6,31,5431,33,'P1');
+INSERT INTO SupplierTable VALUES(7,41,2342,11,'P2');
+INSERT INTO SupplierTable VALUES(8,54,3654,22,'P2');
+INSERT INTO SupplierTable VALUES(9,33,1234,11,'P3');
+INSERT INTO SupplierTable VALUES(10,36,6832,33,'P2');
+
+SELECT * FROM SupplierTable;
+
+SELECT 'AverageCostOfCustomer' AS Cost_According_to_Coustmer,[11],[22],[33]
+FROM (
+SELECT CustomerID,Cost FROM SupplierTable) AS SourceTable
+PIVOT
+(
+AVG(Cost) FOR CustomerID IN ([11],[22],[33]))AS PivotTable;
+
+CREATE TABLE SampleTable(SupplierID INT,AAA INT,BBB INT,CCC INT)
+GO
+INSERT INTO SampleTable VALUES(1,3,5,6);
+INSERT INTO SampleTable VALUES(2,9,2,8);
+INSERT INTO SAMPLETABLE VALUES(3,8,1,7);
+GO
+SELECT * FROM SampleTable;
+
+SELECT SupplierID,Customers,Products
+FROM (SELECT SupplierID,AAA,BBB,CCC FROM SampleTable) p
+UNPIVOT
+(Products FOR Customers IN (AAA,BBB,CCC)) AS Example;
+GO
+
+
+
+------------------------------------------------------------------
+
+DECLARE @var1 INT=30;
+SET @var1/=16;
+SELECT @var1 AS EXAMPLE;
+
+DECLARE @exid hierarchyid;
+SET @exid=hierarchyid::GetRoot();
+SELECT @exid.ToString();
+
+----------------------------------------------------------------------
+CREATE PROCEDURE students_city @scity VARCHAR(8000)
+AS 
+SELECT * FROM studentsinfo
+WHERE City=@scity
+GO
+SELECT * FROM studentsinfo;
+
+EXEC students_city @scity='Karachi';
+-----------------------------------------------------------------------
+DCL COMMANDS:
+
+
+CREATE LOGIN SAMPLE1 WITH PASSWORD='Jaswanth123';
+CREATE USER Jessi1 FOR LOGIN SAMPLE1;
+
+GRANT SELECT ON studentsinfo to Jessi1;
+REVOKE SELECT ON studentsinfo to Jessi1;
+
+
+----------------------------------------------------------------------------
+CREATE TABLE TCLSample(StudentID INT,StudentName VARCHAR(800),Marks INT);
+INSERT INTO TCLSample VALUES(1,'Jaswanth',89);
+INSERT INTO TCLsample VALUES(2,'Sathvika',90);
+INSERT INTO TCLSample VALUES(3,'Nithin',88);
+INSERT INTO TCLsample VALUES(4,'Divya',29);
+
+SELECT * FROM TCLSample;
+
+BEGIN TRY
+BEGIN TRANSACTION
+INSERT INTO TCLSample VALUES(5,'Potti',99)
+UPDATE TCLsample SET StudentName='Prudhvi' WHERE StudentID=5
+UPDATE TCLSample SET Marks=100 WHERE StudentID=5
+COMMIT TRANSACTION
+PRINT 'Transaction Completed'
+END TRY
+BEGIN CATCH
+ROLLBACK TRANSACTION
+PRINT 'Transaction unsucessfull and rollback'
+END CATCH;
+
+BEGIN TRY
+BEGIN TRANSACTION
+INSERT INTO TCLSample VALUES(5,'Potti',99)
+UPDATE TCLsample SET StudentName='Prudhvi' WHERE StudentID=5
+UPDATE TCLSample SET Marks=100/0 WHERE StudentID=5
+COMMIT TRANSACTION
+PRINT 'Transaction Completed'
+END TRY
+BEGIN CATCH
+ROLLBACK TRANSACTION
+PRINT 'Transaction unsucessfull and rollback'
+END CATCH;
+
+THROW 5100,'Record Does not exist',1;
+
+BEGIN TRY
+SELECT StudentName+Marks FROM TCLSample
+END TRY
+BEGIN CATCH
+PRINT 'Not Possible'
+END CATCH;

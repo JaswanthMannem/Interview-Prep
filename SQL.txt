@@ -1,0 +1,450 @@
+sql is a structered query language used for storing, manuplating, retriving the data. It is a standard language for interacting with dbms.
+It also used to perform CRUD operations. It also used to define tables and structures.
+Data of rdbms is stored in database objects called tables.It has rows and columns.
+Tabels are broken into smaller entities called fields.
+Database is a collection of related information.
+There is two types of databases:
+1)Relational Databases:
+	In this data is stored in a organized manner in one or more tables. This data can be accesed through rows and columns in one table.
+	Each unique key identifies each row.
+2)No relational Databases:
+	In this data is stored of any type but in traditional table key-values,documnets,json files,and flexible.
+Database Query:
+Query is request that are give to dbms for specific information.
+column=atrribute,row=it is a individual entry in the table.
+Primary key is a unique atribute.
+Surrogate key is a type of primary key that does not have any mappings really but used to differentiate from other atributes.
+Natural key is a type of primary key that is used in the real world not only database.
+Forign key is usually stores the primary keys of other tables to act as a link between the tables.
+Composite key uses two  combined atrributes to make primary key.And both the columns itself act as a forign keys.
+Candidate Key is a minimal set of attributes that uses to identify a tuple.
+Super Key is a attribute that is used to uniquely identifies all attributes in relation.
+Alternate key is set of candidate keys other then primary key.
+SQL is a hybrid language.It his of 4 types.
+1)Data query language-used to query the database for information that is already stored in the database.
+2)Data definition language-It defines the database.
+3)Data control language-It used for controlling acess to the database.
+4)Data manuplation language-It manuplates the information in datavase by inserting,deleting and updating the data.
+A query is set of instructions given to the database for accecing the specific information.
+
+DataTypes:
+Major datatypes in sql  are
+1)INT-whole numbers
+2)DECIMAL(M,N)-decimal value,excat value
+3)VARCHAR(l)-string of length l
+4)BLOB-binary language object
+5)DATE-yyyy-mm-dd
+6)TIMESTAMP-yyyy-mm-dd hh-mm-ss
+
+Actual Queries:
+CREATE DATABASE X;       //x named database is created using this query
+CREATE TABLE Y ();      //y named table is created
+
+CREATE TABLE student (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(20),
+    major VARCHAR(20)
+);
+DESCRIBE student;
+DROP TABLE student;
+ALTER TABLE student ADD gpa DECIMAL(3,2);
+ALTER TABLE student DROP COLUMN gpa;
+SELECT * FROM student;
+INSERT INTO student VALUES(1,"Jack","Biology");
+INSERT INTO student VALUES(2,"Kate","Sociology");
+INSERT INTO student(student_id,name) VALUES(3,"Claire");
+INSERT INTO student VALUES(4,"Jack","Biology");
+INSERT INTO student VALUES(5,"Mike","Computer Science");
+
+output:
+student_id name     major
+1	   Jack	    Biology
+2	   Kate	    Sociology
+3	   Claire	
+4	   Jack	    Biology
+5	   Mike	    Computer Science
+
+CREATE TABLE student (
+    student_id INT,
+    name VARCHAR(20) NOT NULL,
+    major VARCHAR(20) UNIQUE
+);
+INSERT INTO student VALUES(1,"JACK","Biology");
+INSERT INTO student VALUES(2,"Kate","Sociology");
+INSERT INTO student VALUES(3,"Claire","Chemistry");
+INSERT INTO student VALUES(4,"JAck","Biology");
+INSERT INTO student VALUES(5,"Mike","Computer Science");
+SELECT * FROM student;
+output:
+when we are inserting 4 into table we already have biology inserted into 1.so we get error message.
+this not null and unique are called constraints.there are more other.
+
+CREATE TABLE student (
+    student_id INT,
+    name VARCHAR(20) NOT NULL,
+    major VARCHAR(20) DEFAULT "undecided"
+);
+INSERT INTO student VALUES(1,"JACK","Biology");
+INSERT INTO student VALUES(2,"Kate","Sociology");
+INSERT INTO student VALUES(3,"Claire","Chemistry");
+INSERT INTO student(student_id,name) VALUES(4,"JAck");
+INSERT INTO student VALUES(5,"Mike","Computer Science");
+SELECT * FROM student;
+
+output:
+1	JACK	Biology
+2	Kate	Sociology
+3	Claire	Chemistry
+4	JAck	undecided
+5	Mike	Computer Science
+
+CREATE TABLE student (
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(20),
+    major VARCHAR(20)
+);
+INSERT INTO student(name,major) VALUES("JACK","Biology");
+INSERT INTO student(name,major) VALUES("Kate","Sociology");
+INSERT INTO student(name,major) VALUES("Claire","Chemistry");
+INSERT INTO student(name,major) VALUES("Mike","Computer Science");
+SELECT * FROM student;
+
+output:
+1	JACK	Biology
+2	Kate	Sociology
+3	Claire	Chemistry
+4	Mike	Computer Science
+
+CREATE TABLE student (
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(20),
+    major VARCHAR(20)
+);
+INSERT INTO student(name,major) VALUES("Jack","Biology");
+INSERT INTO student(name,major) VALUES("Kate","Sociology");
+INSERT INTO student(name,major) VALUES("Claire","Chemistry");
+INSERT INTO student(name,major) VALUES("Mike","Computer Science");
+SELECT * FROM student;
+DROP TABLE student;
+UPDATE student SET major="Bio" WHERE major="Biology";
+UPDATE student SET name="Mia Khalifa" WHERE name="Kate";
+UPDATE student SET major="Biochemistry" WHERE major="Bio" OR major="Chemistry";
+UPDATE student SET name="Jaswanth",major="Data Science" WHERE student_id=1;
+UPDATE student SET major=NULL;
+
+output:
+1	Jaswanth	
+2	Mia Khalifa	
+3	Claire	
+4	Mike	
+
+CREATE TABLE student (
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(20),
+    major VARCHAR(20)
+);
+INSERT INTO student(name,major) VALUES("Jack","Biology");
+INSERT INTO student(name,major) VALUES("Kate","Sociology");
+INSERT INTO student(name,major) VALUES("Claire","Chemistry");
+INSERT INTO student(name,major) VALUES("Mike","Computer Science");
+SELECT * FROM student;
+DROP TABLE student;
+DELETE FROM student WHERE name="Jack" AND major="Biology";
+DELETE FROM student WHERE student_id=4
+
+output:
+2	Kate	Sociology
+3	Claire	Chemistry
+
+CREATE TABLE student (
+    student_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(20),
+    major VARCHAR(20)
+);
+INSERT INTO student(name,major) VALUES("Jack","Biology");
+INSERT INTO student(name,major) VALUES("Kate","Sociology");
+INSERT INTO student(name,major) VALUES("Claire","Chemistry");
+INSERT INTO student(name,major) VALUES("Mike","Computer Science");
+SELECT * FROM student;
+DROP TABLE student;
+SELECT name,major FROM student;
+SELECT student.name,student.major FROM student ORDER BY name;
+SELECT student.name,student.major FROM student ORDER BY major;
+SELECT * FROM student ORDER BY student_id DESC;
+SELECT * FROM student ORDER BY student_id ASC;
+SELECT * FROM student ORDER BY name,major;
+SELECT * FROM student ORDER BY student_id DESC LIMIT 2;
+SELECT name,major FROM student WHERE major="Chemistry" OR name="Mike";
+SELECT name,major FROM student WHERE major<>"Chemistry" OR name="Mike";
+--<>is not equal to
+SELECT * FROM student WHERE name IN ("Jack","Kate") AND student_id>2;
+
+CREATE TABLE employee (
+    emp_id INT PRIMARY KEY,
+    first_name VARCHAR(20),
+    last_name VARCHAR(20),
+    birth_date DATE,
+    sex VARCHAR(1),
+    salary INT,
+    super_id INT,
+    branch_id INT
+);
+CREATE TABLE branch (
+    branch_id INT PRIMARY KEY,
+    branch_name VARCHAR(20),
+    mgr_id INT,
+    mgr_start_date DATE,
+    FOREIGN KEY(mgr_id) REFERENCES employee(emp_id) ON DELETE SET NULL
+);
+ALTER TABLE employee
+ADD FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL;
+ALTER TABLE employee
+ADD FOREIGN KEY(super_id) REFERENCES employee(emp_id) ON DELETE SET NULL;
+CREATE TABLE client (
+    client_id INT PRIMARY KEY,
+    client_name VARCHAR(20),
+    branch_id INT,
+    FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL
+);
+CREATE TABLE works_with (
+    emp_id INT,
+    client_id INT,
+    total_sales INT,
+    PRIMARY KEY(emp_id,client_id),
+    Foreign Key(emp_id) references employee(emp_id) ON DELETE CASCADE,
+    Foreign Key(client_id) references client(client_id) ON DELETE CASCADE
+);
+CREATE TABLE branch_supplier (
+    branch_id INT,
+    supplier_name VARCHAR(20),
+    supply_type VARCHAR(20),
+    PRIMARY KEY(branch_id,supplier_name),
+    FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE CASCADE
+);
+INSERT INTO employee VALUES(100,"David","Wallace","1967-11-17","M",250000,NULL,NULL);
+INSERT INTO branch VALUES(1,"Corporate",100,"2006-02-09");
+UPDATE employee SET branch_id=1 WHERE emp_id=100;
+INSERT INTO employee VALUES(101,"Jan","Levinson","1961-05-11","F",110000,100,1);
+
+INSERT INTO employee VALUES(102,"Michael","Scott","1964-03-15","M",75000,100,NULL);
+INSERT INTO branch VALUES(2,"Scranton",102,"1992-04-06");
+UPDATE employee SET branch_id=2 WHERE emp_id=102;
+INSERT INTO employee VALUES(103,"Angela","Martin","1971-06-25","F",63000,102,2);
+INSERT INTO employee VALUES(104,"Kelly","Kapoor","1980-02-05","F",55000,102,2);
+INSERT INTO employee VALUES(105,"Stanley","Hudson","1958-02-19","M",69000,102,2);
+
+INSERT INTO employee VALUES(106,"Josh","Porter","1969-09-05","M",78000,100,NULL);
+INSERT INTO branch VALUES(3,"Stamford",106,"1998-02-13");
+UPDATE employee SET branch_id=3 WHERE emp_id=106;
+INSERT INTO employee VALUES(107,"Andy","Bernard","1973-07-22","M",65000,106,3);
+INSERT INTO employee VALUES(108,"Jim","Halpert","1978-10-01","M",71000,106,3);
+
+INSERT INTO client VALUES(400,"Dunmore Highschool",2);
+INSERT INTO client VALUES(401,"Lackawana Country",2);
+INSERT INTO client VALUES(402,"FedEx",3);
+INSERT INTO client VALUES(403,"John Daly Law, LLC",3);
+INSERT INTO client VALUES(404,"Scranton Whitepages",2);
+INSERT INTO client VALUES(405,"Times Newspaper",3);
+INSERT INTO client VALUES(406,"FedEx",2);
+
+INSERT INTO works_with VALUES(105,400,55000);
+INSERT INTO works_with VALUES(102,401,267000);
+INSERT INTO works_with VALUES(108,402,22500);
+INSERT INTO works_with VALUES(107,403,5000);
+INSERT INTO works_with VALUES(108,403,12000);
+INSERT INTO works_with VALUES(105,404,33000);
+INSERT INTO works_with VALUES(107,405,26000);
+INSERT INTO works_with VALUES(102,406,15000);
+INSERT INTO works_with VALUES(105,406,130000);
+
+INSERT INTO branch_supplier values(2,"Hammer Mill","Paper");
+INSERT INTO branch_supplier values(2,"Uni-ball","Writing Utensils");
+INSERT INTO branch_supplier values(3,"Patriot Paper","Paper");
+INSERT INTO branch_supplier values(2,"J.T. Forms & Labels","Custom Forms");
+INSERT INTO branch_supplier values(3,"Uni-ball","Writing Utensils");
+INSERT INTO branch_supplier values(3,"Hammer Mill","Paper");
+INSERT INTO branch_supplier values(2,"Stamford Labels","Custom Forms");
+
+SELECT * FROM employee;
+SELECT * FROM branch;
+SELECT * FROM client;
+SELECT * FROM works_with;
+SELECT * FROM branch_supplier;
+--Arrange employees according to their salary.
+SELECT * FROM employee ORDER BY salary DESC;
+--Arrange employes according to there sex
+SELECT * FROM employee ORDER BY sex,first_name,last_name;
+--Select first 5 employees in the table
+SELECT * FROM employee LIMIT 5;
+--Find first and last names of all employees
+SELECT first_name,last_name FROM employee;
+--Find forenames and surnames of all employees
+SELECT first_name AS Forename,last_name AS Surname FROM employee;
+--Find out all different genders in the table
+SELECT DISTINCT sex FROM employee;
+--Find the number of employes in the table 
+SELECT COUNT(emp_id) FROM employee;
+--find the number of female employees born after 1970
+SELECT count(emp_id) FROM employee WHERE sex="F" AND birth_date>"1970-01-01";
+--Find the average of all employess salaries
+SELECT AVG(salary) FROM employee;
+--Find the average of men employess salaries
+SELECT AVG(salary) FROM employee WHERE sex="M";
+--Find the sum of all employees salary
+SELECT SUM(salary) FROM employee;
+--Find out how many males and females are there
+SELECT COUNT(sex),sex FROM employee GROUP BY sex;
+--find out the total sales of each employee
+SELECT SUM(total_sales),emp_id FROM works_with GROUP BY emp_id;
+
+--Wild cards are special characters that are used with conjuction "LIKE"
+--find any client who are an LLC
+SELECT * FROM client WHERE client_name LIKE "%LLC";
+--find the branch_suppliers who are having lables
+SELECT * FROM branch_supplier WHERE supplier_name LIKE "%Label_";
+--find any employee born in october
+SELECT *FROM employee WHERE birth_date LIKE "-10-%";--"____-10%"
+--find any clients who are school
+SELECT * FROM client WHERE client_name LIKE "%school%";
+--Unions are used to combine multiple select statements and combine them as one.
+--find the list of employees and the branch names
+SELECT first_name AS company_names FROM employee
+UNION
+SELECT branch_name FROM branch
+UNION
+SELECT client_name FROM client;
+--find the list of client names and branch supplier names
+SELECT client_name,client.branch_id FROM client
+UNION
+SELECT supplier_name,branch_supplier.branch_id FROM branch_supplier;
+--find the list of money that earned or given out by the company
+SELECT salary FROM employee
+UNION
+SELECT total_sales FROM works_with;
+
+INSERT INTO branch VALUES(4,"Buffalo",NULL,NULL);
+--find the all manegers and their branch 
+SELECT employee.emp_id,employee.first_name,branch.branch_name FROM employee
+JOIN branch ON employee.emp_id=branch.mgr_id;--Inner join
+
+SELECT employee.emp_id,employee.first_name,branch.branch_name FROM employee
+LEFT JOIN branch ON employee.emp_id=branch.mgr_id;--Left join
+
+SELECT employee.emp_id,employee.first_name,branch.branch_name FROM employee
+RIGHT JOIN branch ON employee.emp_id=branch.mgr_id;--right join
+
+--There is also an other join full outer join which gives full information left and right
+SELECT *
+FROM employee
+LEFT JOIN branch ON employee.emp_id = branch.mgr_id
+UNION
+SELECT *
+FROM employee
+RIGHT JOIN branch ON employee.emp_id = branch.mgr_id;
+--Instead we can use this.
+
+--find the name of all employes who sold over 30000.
+
+SELECT employee.first_name,employee.last_name FROM employee WHERE employee.emp_id IN(
+    SELECT works_with.emp_id FROM works_with WHERE works_with.total_sales>30000
+);
+
+--find all the clients who are managed by branch where michael scott manages.
+--Assume that you know maichel id.
+
+SELECT client.client_name FROM client WHERE client.branch_id =(
+    SELECT branch.branch_id FROM branch WHERE branch.mgr_id=102 LIMIT 1
+);
+
+DELETE FROM employee WHERE employee.emp_id=102;
+SELECT * FROM employee;
+SELECT * FROM branch;
+DELETE FROM branch WHERE branch.branch_id=2;
+SELECT * FROM branch_supplier;
+
+--Trigger is a statement that executes automatically when there is any modification in database
+CREATE TABLE trigger_test(
+    message VARCHAR(100)
+);
+DELIMITER $$
+    CREATE
+    TRIGGER my_trigger BEFORE INSERT
+    ON employee
+    FOR EACH ROW BEGIN
+        INSERT INTO trigger_test VALUES("new employee added");
+    END$$
+DELIMITER ;
+
+INSERT INTO employee VALUES(109,"Jessi","Mannem","2003-05-21","M",1000000,NULL,NULL);
+SELECT * FROM trigger_test;
+DELIMITER$$
+CREATE
+    TRIGGER my_trigger1 BEFORE INSERT ON employee
+    FOR EACH ROW BEGIN
+        INSERT INTO trigger_test VALUES(NEW.first_name);
+    END$$
+DELIMITER;
+INSERT INTO employee VALUES(110,"dillu","Khopesh","2002-12-01","T",1000000,NULL,NULL);
+SELECT * FROM trigger_test;
+
+DELIMITER $$
+CREATE TRIGGER my_trigger2 BEFORE INSERT ON employee
+FOR EACH ROW BEGIN
+    IF NEW.sex="T" THEN
+        INSERT INTO trigger_test VALUES("Added a transgender Employee");
+    ELSEIF NEW.sex="M" THEN
+        INSERT INTO trigger_test VALUES("Added a MALE Employee");
+    ELSEIF NEW.sex="F" THEN
+        INSERT INTO trigger_test VALUES("Added a FEMALE Employee");
+    ELSE
+        INSERT INTO trigger_test VALUES("Added other Employee");
+    END IF;
+    END$$
+DELIMITER ;
+INSERT INTO employee VALUES(111,"dillu","Khopesh","2002-12-01","T",1000000,NULL,NULL);
+SELECT * FROM trigger_test;
+
+--entity is a object we want to model and store information about
+--atribites are in oval shape and primary keys are underlined
+--Tables are in rectangular shape
+--composite attribute is kmown as an atribitue that can be divided into sub-attributes
+--Multi variable attribute is known as having more than one value in it and described by double oval shape
+--Derived attribute is known as an attribute that can be directly derived from other attribute it is represented as dotted oval
+--multiple entities are known as we can define more than one entities in diagram
+--Relationships define relation between entities it is in rhombus shape
+--relationships cardinality are
+--one to one
+--one to many(vice versa)
+--many to many
+--partial participation single line
+--full participation double line
+--Relationship atrribute is about attribute defined on the relation ship
+--weak entity is an entity that can not be identified by its attributes alone
+--Identifying realtionship is knowns as relationship to serve uniquely identified weak entities They are double cicled
+
+--converting ER diagram into database schema
+--Step 1: mapping of regular entity types
+--Step 2:mapping of week entitys
+--Step 3:mapping of binary 1:1 relationship types
+--Step 4:mapping of binary 1:N relationship types
+--Step 5:mapping of binary N:M relationship types
+
+The company is organized into branches. Each branch has a unique number, a name, and a particular employee who manages it.
+
+The company makes it’s money by selling to clients. Each client has a name and a unique number to identify it.
+
+The foundation of the company is it’s employees. Each employee has a name, birthday, sex, salary and a unique number.
+
+An employee can work for one branch at a time, and each branch will be managed by one of the employees that work there. We’ll also want to keep track of when the current manager started as manager.
+
+An employee can act as a supervisor for other employees at the branch, an employee may also act as the supervisor for employees at other branches. An employee can have at most one supervisor.
+
+A branch may handle a number of clients, with each client having a name and a unique number to identify it. A single client may only be handled by one branch at a time.
+
+Employees can work with clients controlled by their branch to sell them stuff. If nescessary multiple employees can work with the same client. We’ll want to keep track of how many dollars worth of stuff each employee sells to each client they work with.
+
+Many branches will need to work with suppliers to buy inventory. For each supplier we’ll keep track of their name and the type of product they’re selling the branch. A single supplier may supply products to multiple branches.
+
+https://drive.google.com/file/d/1UXb6o0okjDZOXInulxkg0C0v6lI3AKT9/view?usp=drivesdk
+
+https://drive.google.com/file/d/1KKfVy6EBSlo35LM0xhgqTrxLsFxvezsJ/view?usp=drivesdk

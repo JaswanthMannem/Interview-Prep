@@ -1,0 +1,339 @@
+1)from fastapi import FastAPI
+app=FastAPI()
+@app.get("/")
+async def root():
+    return {"message":"Hello world"}
+
+2)from fastapi import FastAPI
+app=FastAPI()
+@app.get("/get_items/{get_items}")
+async def items(get_items:int):
+    return {"item":get_items}
+
+3)from fastapi import FastAPI
+app=FastAPI()
+@app.get("/users/me")
+async def read_users_me():
+    return {"user_id":"the current user"}
+@app.get("/users/{user_id}")
+async def read_users(user_id:str):
+    return {"user_id":user_id}
+
+4)from fastapi import FastAPI
+app=FastAPI()
+@app.get("/users")
+async def read_users_me():
+    return ["rick","morty"]
+@app.get("/users")
+async def read_users():
+    return ["bean","elfo"]
+
+5)from enum import Enum
+from fastapi import FastAPI
+class Model_Name(str,Enum):
+    alexnet = "alexnet"
+    resent = "resnet"
+    lenet = "lenet"
+app=FastAPI()
+@app.get("/models/{model_name}")
+async def get_model(model_name:Model_Name):
+    if model_name is Model_Name.alexnet:
+        return {"model_name":model_name,"message":"Deep Learning FTW!"}
+    if model_name.value=="lenet":
+        return {"model_name":model_name,"message":"leCNN all images"}
+    return {"model_name":model_name,"message":"Have some residual"}
+
+5)from fastapi import FastAPI
+app=FastAPI()
+@app.get("/files/{file_path:path}")
+async def read_file(file_path:str):
+    return {"file_path":file_path}
+
+6)from fastapi import FastAPI
+app=FastAPI()
+fake_items_db=[{"item_name":"foe"},{"item_name":"bar"},{"item_name":"baz"}]
+@app.get("/items/")
+async def read_items(skip: int=0,limit: int=10):
+    return fake_items_db[skip:skip+limit]
+
+7)from fastapi import FastAPI
+app=FastAPI()
+@app.get("/items/{item_id}")
+async def read_items(item_id:str,q: str | None=None,short: bool=False):
+    item={"item_id":item_id}
+    if q:
+        item.update({"q":q})
+    if not short:
+        item.update({"description":"This is amazing item"})
+    return item
+
+8)from fastapi import FastAPI
+app=FastAPI()
+@app.get("/items/{item_id}")
+async def get_items(item_id:str,needy:str):
+    item={"item_id":item_id,"needy":needy}
+    return item
+
+9)from pydantic import BaseModel
+from fastapi import FastAPI
+class Item(BaseModel):
+    name:str
+    description: str|None =None
+    price:float
+    tax:float|None=None
+app=FastAPI()
+@app.post("/items/")
+async def create_item(item:Item):
+    item_dict=item.dict()
+    if item.tax:
+        price_with_tax=item.tax+item.price
+        item_dict.update({"price_with_tax":price_with_tax})
+    return item_dict
+
+10)from pydantic import BaseModel
+from fastapi import FastAPI
+class Item(BaseModel):
+    name:str
+    description:str|None=None
+    tax:float
+    price:float|None=None
+app=FastAPI()
+@app.put("/items/{item_id}")
+async def update_item(item_id:int,item:Item):
+    return {"item_id":item_id,**item.dict()}
+
+11)from pydantic import BaseModel
+from fastapi import FastAPI
+class Item(BaseModel):
+    name:str
+    description:str|None=None
+    tax:float
+    price:float|None=None
+app=FastAPI()
+@app.put("/items/{item_id}")
+async def update_item(item_id:int,item:Item,q:str|None=None):
+    result={"item_id":item_id,**item.dict()}
+    if q:
+        result.update({"q":q})
+    return result
+
+12)from typing import Annotated
+from fastapi import FastAPI,Query
+app=FastAPI()
+@app.get("/items/")
+async def read_items(q:Annotated[str|None,Query(min_length=3,max_length=50)]=None):
+    results={"items":[{"item_id":"foo"},{"item_id":"fee"}]}
+    if q:
+        results.update({"q":q})
+    return results
+
+13)from typing import Annotated
+from fastapi import FastAPI,Query
+app=FastAPI()
+@app.get("/items/")
+async def read_items(q:Annotated[str|None,Query(min_length=3,max_length=50,regex="^fixed$")]=None):
+    results={"items":[{"item_id":"foo"},{"item_id":"fee"}]}
+    if q:
+        results.update({"q":q})
+    return results
+
+14)from typing import Annotated
+from fastapi import FastAPI,Query
+app=FastAPI()
+@app.get("/items/")
+async def read_items(q:Annotated[str,Query(min_length=3)]="fixed"):
+    results={"items":[{"item_id":"foo"},{"item_id":"fee"}]}
+    if q:
+        results.update({"q":q})
+    return results
+
+15)from typing import Annotated
+from fastapi import FastAPI,Query
+app=FastAPI()
+@app.get("/items/")
+async def read_items(q:Annotated[str,Query(min_length=3)]):
+    results={"items":[{"item_id":"foo"},{"item_id":"fee"}]}
+    if q:
+        results.update({"q":q})
+    return results
+
+16)from typing import Annotated
+from fastapi import FastAPI,Query
+app=FastAPI()
+@app.get("/items/")
+async def read_items(q:Annotated[list[str]|None,Query()]=None):
+    query_items={"q":q}
+    return query_items
+
+17)from typing import Annotated
+from fastapi import FastAPI,Query
+app=FastAPI()
+@app.get("/items/")
+async def read_items(q:Annotated[list[str],Query()]=["foo","bar"]):
+    query_items={"q":q}
+    return query_items
+
+18)from typing import Annotated
+from fastapi import FastAPI,Query
+app=FastAPI()
+@app.get("/items/")
+async def read_items(q:Annotated[str|None,Query(alias="item-query")]=None):
+    result={"items":[{"item_id":"foo"},{"item_id":"bar"}]}
+    if q:
+        result.update({"q":q})
+    return result
+
+19)from typing import Annotated
+from fastapi import FastAPI,Query
+app=FastAPI()
+@app.get("/items/")
+async def read_items(q:Annotated[str|None,Query(alias="item-query",title="nene",description="inthe",min_length=3,max_length=50,pattern="^fixed$",deprecated=True)]=None):
+    result={"items":[{"item_id":"foo"},{"item_id":"bar"}]}
+    if q:
+        result.update({"q":q})
+    return result
+
+20)from typing import Annotated
+from fastapi import FastAPI,Query
+app=FastAPI()
+@app.get("/items/")
+async def read_items(hidden_query:Annotated[str|None,Query(include_in_schema=False)]=None):
+    if hidden_query:
+        return {"hidden_query":hidden_query}
+    else:
+        return {"hidden_query":"not found"}
+
+21)from typing import Annotated
+from fastapi import FastAPI, Path, Query
+app=FastAPI()
+@app.get("/items/{item_id}")
+async def read_items(item_id:Annotated[int,Path(title="The id of the item")],q:Annotated[str|None,Query(alias="item-query")]=None):
+    result={"item_id":item_id}
+    if q:
+        result.update({"q":q})
+    return result
+
+22)from typing import Annotated
+from fastapi import FastAPI, Path, Query
+app=FastAPI()
+@app.get("/items/{item_id}")
+async def read_items(q:str,item_id:Annotated[int,Path(title="the id of the item to get")]):
+    result={"item_id":item_id}
+    if q:
+        result.update({"q":q})
+    return result
+
+23)from typing import Annotated
+from fastapi import FastAPI, Path, Query
+app=FastAPI()
+@app.get("/items/{item_id}")
+async def read_items(q:str,item_id:Annotated[int,Path(title="the id of the item to get",ge=1)]):
+    result={"item_id":item_id}
+    if q:
+        result.update({"q":q})
+    return result
+
+24)from typing import Annotated
+from fastapi import FastAPI, Path, Query
+app=FastAPI()
+@app.get("/items/{item_id}")
+async def read_items(q:str,item_id:Annotated[int,Path(title="the id of the item to get",gt=1,lt=100)]):
+    result={"item_id":item_id}
+    if q:
+        result.update({"q":q})
+    return result
+
+25)from pydantic import BaseModel
+from fastapi import FastAPI,Path
+from typing import Annotated
+
+class Item(BaseModel):
+    name:str
+    description:str|None=None
+    price:float
+    tax:float|None=None
+app=FastAPI()
+@app.put("/items/{item_id}")
+async def update_items(item_id:Annotated[int,Path(lt=100,gt=1)],q:str|None=None,item:Item|None=None):
+    result={"item_id":item_id}
+    if q:
+        result.update({"q":q})
+    if item:
+        result.update({"item":item})
+    return result
+
+25)from pydantic import BaseModel
+from fastapi import FastAPI
+
+class Item(BaseModel):
+    name:str
+    description:str|None=None
+    price:float
+    tax:float|None=None
+
+class User(BaseModel):
+    username:str
+    full_name:str|None=None
+
+app=FastAPI()
+@app.put("/items/{item_id}")
+async def update_items(item_id:int,item:Item,user:User):
+    result={"item_id":item_id}
+    if item:
+        result.update({"item":item})
+    if user:
+        result.update({"user":user})
+    return result
+
+26)from pydantic import BaseModel
+from fastapi import FastAPI,Body
+from typing import Annotated
+class Item(BaseModel):
+    name:str
+    description:str|None=None
+    price:float
+    tax:float|None=None
+
+class User(BaseModel):
+    username:str
+    full_name:str|None=None
+
+app=FastAPI()
+@app.put("/items/{item_id}")
+async def update_items(item_id:int,item:Item,user:User,importance:Annotated[int,Body()]):
+    result={"item_id":item_id}
+    result.update({"item":item})
+    result.update({"user":user})
+    result.update({"importance":importance})
+    return result
+
+27)from pydantic import BaseModel
+from fastapi import FastAPI,Body
+from typing import Annotated
+class Item(BaseModel):
+    name:str
+    description:str|None=None
+    price:float
+    tax:float|None=None
+
+app=FastAPI()
+@app.put("/items/{item_id}")
+async def update_items(item_id:int,item:Annotated[Item,Body(embed=True)]):
+    result={"item_id":item_id,"item":item}
+    return result
+
+
+28)from pydantic import BaseModel,Field
+from fastapi import FastAPI,Body
+from typing import Annotated
+class Item(BaseModel):
+    name:str
+    description:str|None=Field(default=None,title="the description of item",max_length=300)
+    tax:float
+    price:float|None=Field(gt=0,description="this want to be greater than zero")
+
+app=FastAPI()
+@app.put("/items/{item_id}")
+async def update_item(item_id:int,item:Annotated[Item,Body(embed=True)]):
+    result={"item_id":item_id,"item":item}
+    return result

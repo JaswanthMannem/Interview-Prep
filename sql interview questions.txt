@@ -1,0 +1,399 @@
+1) What is difference between delete and truncate?
+Delete:
+.delete command is used to delete a row in a table.
+.you can rollback data after using delete statement
+.it is dml command
+.it is slower than truncate.
+Truncate:
+.Truncate is used to delete all the rows of a table
+.you cannot rollback data
+.it is a ddl command
+.it is faster
+
+2)What are the different subsets of sql?
+DDL(Data Definition Language)-consists of the commands that can be used to define the database schema.
+DML(Data Manuplation Language)-consists of commands that deals with the manipulation of data present in database.
+DCL(Data Control Language)-Includes commands which deal with the rights,permission and other control of the database system.
+TCL(Transaction Control Language)-Includes the commands which mainly deal with the transaction of database.
+
+3)What do mean by DBMS?What are its different types?
+A database management system(DBMS) is a software application that interacts with the user, application and the database itself to capture and analuse the data. The data stored in the database can be modified,retrived and deleted, and can be of any type like string, numbers, images,....
+Relational databases 
+hierarchial databases
+non relational databases
+object oriented databases
+network databases
+
+4)what do you mean by table and field in sql?
+A table refers to collection of data in a organized manner in the form of rows and columns.
+A field refers to the number of columns in a table.
+
+5)What are joins in sql?
+A JOIN clause is used to combine rows from two or more tables, based  on a related column between them. It is uesd to merge two tables or retrive data from there.
+4 types of joins:
+Inner join
+Full join
+Left join
+Right Join
+
+6)What is difference between char and varchar2?
+CHAR is used for strings having a fixed length.
+VARCHAR2 is used for character strings of variable length.
+
+7)What is a primary key?
+A set of attributes that can hbe used to identify every tuple is a primy key.So if there are 3-4 candidate keys present in a relationship,then out of those one can be choosen as a primary key.
+
+8)What are constraints?
+Constraints are used to specify the limit on the data type of the table. It can be specified while creating or altering the table statements.
+NOT NULL-Ensures that a null value cannot be stored in a column.
+UNIQUE-This constraint makes sure that all the values in a column are different.
+CHECK-This constraint ensures that all the values in a column satisfy a specific condition.
+DEFAULT-This constraint consists of set of default values for a column when no value is specified.
+INDEX-This constraint is used to create and retrive data from the database very easily.
+
+9)What is difference between SQL and MYSQL?
+SQL-It is a standard language which stands for structured query language based on english language. SQL is the core of relational database which is used for accessing and managing database.
+MYSQL-It is an open source relational database management system that  works on many platforms. It provides multi-user acesss to support many storage engines and is backed by oracle.
+
+10)What is a unique key?
+.Uniquely identifies a single row in the table
+.Multiple values allowed per table
+.NULL values are allowed
+.Duplicate values are not allowed.
+A unique key is a set of one or more than one fields/columns of a table that uniquely identify a record in a database table.
+
+You can say that it is little like primary key but it can accept only one null value and it cannot have duplicate values.
+
+The unique key and primary key both provide a guarantee for uniqueness for a column or a set of columns.
+
+There is an automatically defined unique key constraint within a primary key constraint.
+
+11)What is forign key?
+.Forign key maintains referntial integrity by enforcing link between the data in two tables.
+.The foreign key in the child table references the primary key in the parent table.
+The foregin key constraint prevents actions that would destroy links between the child and parent tables.
+
+12)What do you mean by data integrity?
+Data integrity defines accuracy of data,consistency of data and integrity constraints to enforce businss rules on data.
+
+13)What is difference between clusterd and non clustered index in SQL?
+
+Clustered Index:
+.Clustered index is used for easy retrival of data from the database and is faster.
+.Clustered index alters the way records are stored in a database as it sorts out rows by the column which is set to be clustered index.
+.one table can have one clustered index.
+
+Non Clustered Index:
+.Non-clustered index can be used for easy retrieval of data from the databse and is slower.
+.Non clustered index does not alter the way it was stored but it creates a separate object within a table wchich points back to the orginal table rows after searching.
+.one table can have many non-clustered indexes.
+
+14)Write a SQL query to display the current date?
+SELECT GETDATE()
+
+15)What are differenrt types of joins?
+INNER JOIN-This join returns those records which have matching values in both the tables.
+FULL JOIN-This join returns all those records which either have a match in the left or the right table.
+LEFT JOIN-This join returns records from the left table and also those records which satisfy the condition from the right table.
+RIGHT JOIN-This join returns records from the right table and also the records which satisfy the condtion from the left table.
+
+16)What do you mean by denormalization?
+.It refers to the technique which is used to access data from higher to lower forms of a database.
+.Increase the performance of entire infrastructure as it introduces redundancy into the table.
+.Adds the redundent data into table by incorporating databse queries that combine data from various tables into a single table.
+
+17)What are entities and relationships?
+Entities:
+A person,place or thing in the real world about which data can be stored in a database. Tables store data that represents one type of entity. For example - A bank database has a customer table to store customer information. Customer table stores this information as a set of attributes for each customer.
+Relationships:
+Relation or links between entities that have something to do with each other. For example - The customer name is related to the customer account number and contact information, which might be in same table. There can also be relationships between seperate tables.
+
+18)What is an index?
+.It is a performance tuning method.
+.It allows faster retrieval of records from the table.
+.It creates a entry for each value.
+
+19)Explain different types of index.
+UNIQUE Index:
+This does not allow the field to have duplicate values if the column is unique indexed. If a primary key is defined, a unique index can be applied automatically.
+CLUSTERED Index:
+This index reorders the physical order of the table and searches based on the basis of key values. Each table has onlhy one clustered index.
+NON-CLUSTERED Index:
+Non-clustered index does not alter physical order of the table and maintains a logical order of the data. Each table can have many non-clustered indexes.
+
+20)What is Normalization and What are advantages of it?
+Normalization is the process of organizing data to avoid duplication and redundancy.
+ADVANTAGES:
+.Better database organization
+.More tables with smaller rows
+.Efficient data access
+.Greater flexibility for queries
+.Quickly find the information
+.Easier to implement security
+.Allows easy modification 
+.Reduction of redundent and duplicate data
+.More compact database
+.Ensure consistent data after modification.
+
+21)What is the difference between DROP and TRUNCATE commands?
+DROP:
+Removes a table and it cannot be rolled back from the database.
+DROP object object_name
+TRUNCATE:
+Removes all rows from the table and cannot be rolled back into the databse.
+TRUNCATE Table table_name
+
+22)Explain different types of normalization?
+There are mainly four types of normalization: 1NF, 2NF, 3NF and BCNF
+1NF-Each table cell should have a single value. So basically all the records must be unique.
+2NF-Database should be in the form of 1NF and should also have single column primary key.
+3NF-The databse should be in 2NF and must not have any transitive functional dependencies.
+BCNF-The database should be in 3NF and if more than one candidate key is present BCNF is used to divide tables further so that there would be only one candidate key present.
+
+23)What is ACID property in a database?
+ATOMICITY-The entire transcation takes place at once or doesn't happen at all.
+CONSISTENCY-The database must be consistent before and after the transaction.
+ISOLATION-Multiple transactions occurs independently without any interference.
+DURABILITY-The changes of succesful transaction occurs even if the system failure occurs.
+
+24)What do you mean by "TRIGGER" in SQL?
+Trigger in SQL are a special type of stored procedures that are defined to execute automatically in place or after data modifications. It allows you to execute a batch of code when insert, update or any other query is executed aganist a specific table.
+
+25)what are the different operators avilable in SQL?
+.Arithmetic operators
+.Bitwise operators
+.Comparison operators
+.Compound operators
+.Logical operators
+
+26)Are NULL values same as that of zero or a blank space?
+A NULL value is not at all same as that of zero or a blank space.
+NULL value represents a value which is unavilable, unknown, assigned or not applicable whereas a zero is a number and blank space is a character.
+
+27)What is difference between cross join and natural join?
+CROSS JOIN:
+produces the cross product or cartesian product of two tables.
+NATURAL JOIN:
+Based on all the columns having the same name and datatypes in both the tables.
+
+28)What is subquery in SQL?
+A subquery is a query inside another query where a query is defined to retrive data or information back from the database.
+Subqueries are always executed first and the result of subquery is passed on to the main query.
+
+29)What are the different types of a subquery?
+CORRELATED SUBQUERY:
+These are queries which select the data from a table referenced in the  outer query. It is not considerd as an independent query as it refers to another table and refers the column in a table.
+NON_CORRELATED SUBQUERY:
+This query is an independent query where the output of subquery is substituted in the main query.
+
+30)Can you list the ways to get the count of records in a table?
+SELECT * FROM table1
+SELECT COUNT(*) FROM table1
+
+31)Write a SQL query to find the names of employees that begin with 'A'?
+SELECT * FROM table_name WHERE empname like 'A%';
+
+32)write a SQL query to get the third highest salary of an employee from employee_table?
+SELECT TOP 1 salary FROM(SELECT TOP 3 salary from employee_table ORDER BY salary DESC) AS emp ORDER BY salary ASC;
+
+33)What is the need for group functions in SQL?
+Group functions work on the set of rows and returns one result per group.
+AVG
+COUNT
+MAX
+MIN
+SUM
+VARIANCE
+
+34)What is a Relationship and What are the different type of relationships?
+Relation or links are between entities that have something to do with each other. Relationships are defined as the connection between the tables in a database.
+ONE to ONE relationships
+ONE to MANY relationships
+MANY to ONE relationships
+SELF_REFERENCING relationship
+
+35)How can you insert NULL values in a column while inserting the data/
+1)Implicitly by omitting column from column list.
+2)Explicitly by specifying NULL keyword in the VALUES clause.
+
+36)What is difference between 'BETWEEN' and 'IN' condition operators?
+BETWEEN:
+Used to display rows based on range of values in a row.
+SELECT * FROM Students WHERE Roll_no BETWEEN 10 AND 50;
+IN:
+Used to check for values contained in a specific set of values.
+SELECT * FROM Students WHERE Roll_no IN (8,15,25);
+
+37)Why are SQL functions used?
+1)To perform some calculations on the data.
+2)To modify individual data items.
+3)To manipulate the output.
+4)To format dates and adress
+5)To convert data types.
+
+38)What is the need of MERGE statement?
+Allows conditional update or insertion of data into a table.
+It performs an UPDATE if a row exists, or an INSERT if the row does not exist.
+
+39)WHat do you mean by recursive stored procedure?
+Recursive stored procedure refers to a stored procedure which calls by itself untill it reaches some boundary condition.
+This recursive function or procedure helps the programmers to use the same set of code n number of times.
+
+40)What is CLAUSE in SQL?
+SQL clause helps to limit the result set by providing a condition to the query. A clause helps to filter the rows from the entire set of records.
+EX:
+WHERE & HAVING clause
+
+41)What is the difference between 'HAVING' CLAUSE and a 'WHERE' CLAUSE?
+HAVING CLAUSE:
+Can be used only with select statement. It usually used in a GROUP BY clause.
+WHERE CLAUSE:
+Where clause is applied to each row before they are part of the GROUP BY function in a query.
+
+42)List the ways in which Dynamic SQL can be executed.
+1)Write query with parameters.
+2)Using EXEC
+3)Using sp_executesql
+
+43)What are the various levels of constraints?
+Constraints are the representation of a column to enforce data entity and consistency.
+1)Column level constraint
+2)Table level constraint
+
+44)How can you fetch common records from two tables?
+You can fetch common records from two tables using INTERSECT.
+SELECT column1,column2...
+FROM table_name
+WHERE condition 
+
+INTERSECT
+
+SELECT column1,column2...
+FROM table_name
+WHERE condition
+
+45)List some case manipulation functions in SQL?
+LOWER:
+This function returns the string in lowercase. It takes a strings as an argument and returns it by converting it into lower case.
+LOWER('string')
+UPPER:
+This function returns the string in uppercase. It takes a string as an argument and returns it by converting  it into the uppercase.
+UPPER('string')
+INITCAP:
+This function returns the string with the first letter in uppercase and ret of the letters in lowercase.
+INITCAP('string')
+
+46)What are the differnet set operators available in SQL?
+1)UNION
+2)INTERSECT
+3)MINUS
+
+47)What is ALIAS command?
+ALIAS name can  be given to any table or a column. This alias name can be referred in WHERE clause to identify a particular table or a column.
+SELECT emp.empid,dept.result 
+from employee as emp, department as dept 
+where emp.empid=dept.empid
+
+48)What are aggregate and scalar functions?
+AGGREGATE FUNCTIONS:
+Used to evaluate mathematical caluclation and returns a single value. These caluclations are done from the columns in a table.
+MAX(),COUNT()
+SCALAR FUNCTIONS:
+Scalar functions return a single value based on the input value.
+UCASE(),NOW()
+
+49)How can you fetch alternate records from a table?
+SELECT student_id from (SELECT rowno, student_id from student) WHERE mod(rowno,2=0);
+SELECT student_id from (SELECT rowno,student_id from student) WHERE mod(rowno,2)=1;
+
+50)Name the operator which is used in the query for pattern matching?
+LIKE operator is used for pattern matching.
+%-It matches zero or more characters.
+_-It matches exactly one character.
+SELECT * FROM students WHERE student_name LIKE 'a%';
+SELECT * FROM students WHERE student_name LIKE 'abc_';
+
+51)How can you SELECT unique records from a table?
+You can select unique records from the table using the DISTINCT keyword.
+SELECT DISTINCT studentID FROM Student;
+
+52)How can you fetch first 5 characters of the string?
+SUBSTRING():
+SELECT SUBSTRING(StudentName,1,5) as student name FROM student;
+RIGHT():
+SELECT RIGHT(StudentName,5) as studentname FROM student;
+
+53)What is the main difference between SQL and PL/SQL?
+SQL:
+It is a query language that allows you to issue a single query or execute a single insert/update/delete.
+PL/SQL:
+It is Oracle's "procedural Language" SQL, Which allows you to write a full pogram to accomplish multiple operations such as selects/inserts/updates/deletes.
+
+54)What is a view?
+A view is virtiual table which consists of subset of data contained in a table. Since views are not present, it takes less space to store. View can have data of one or more tables combined and it depends on the relationship.
+
+55)what are views used for?
+A view refers to a logical snap shot based on a table or another view.
+It is used for:
+1)Restricting access to data.
+2)Making complex querys simple.
+3)Ensuring data indipendence.
+4)Providing different views of the same data.
+
+56)What is a stored Procedure?
+A function which consists of many SQL statements to access the database system.
+Several SQL statements are consolidated into a stored procedure and are executed whenever and wherever required.
+This saves time and avoid writing code again and again.
+
+57)List some advantages and disadvantages of stored procedure?
+Advantages:
+A stored procedure can be used as modular programming which means create once,store and call for several times whenever it required, This supports faster execution. It also reduces network traffic and provides better security to the data.
+Disadvantages:
+The only disadvantage of stored procedure is that it can be executed only in the database and utilizes more memory in the database server.
+
+58)List all the types of user-defined functions.
+1)Scalar functions
+2)Multi-statement valued function
+3)Inline Table-valued functions
+
+59)What do you mean by Collation?
+Collation is defined as a set of rules that determine how data can be sorted as well as compared.
+Character data is sorted using the rules that define the correct character sequence along with options for specifying case sensitivity, character width etc.
+
+60)What are different types of collation sensitivity?
+1)case senistivity
+2)kana sensitivity
+3)Width sensitivity
+4)Accent sensitivity
+
+61)What are Loacal and Global variables?
+Local Variables:
+These variables can be used or exist only inside the function. These variables are not used or refferd by other function.
+Global Variables:
+These variables are the variables which can be accesed throughout the program.Global variables cannot be created whenever that function is called.
+
+62)What is auto increment in sql?
+Allow the user to create a unique number to get generated whenever a new record is inserted into the table.
+This keyword is usually required whenever PRIMARY KEY is used.
+AUTO INCREMENT keyword can be used in Oracle and IDENTITY keywords can be used in SQL server.
+
+63)What is a datawarehouse?
+Datawarehouse refers to a central repository of data where the data is assembled from multiple sources of information.
+Those data are consolidated,transformed and made available for the mining as well as online processing.
+Warehouse data also have a subset of data called Data Marts.
+
+64)What are the different authentication modes in SQL server?How can it be changed?
+Windows Mode
+Mixed Mode
+Steps to change authentication mode in SQL server:
+.Click start->Programs->Microsoft SQL Server and Click Enterprise Manager to run SQL Enterprise manager from the Microsoft SQL server program group.
+.Then select the server  from the tools menu.
+.Select SQL server configuration properties, and choose the security page.
+
+65)What are STUFF and REPLACE function?
+STUFF function:
+This function is used to overwrite existing character or inserts a string into another string.
+STUFF(string_expression,start,length,replacement_characters)
+REPLACE function:
+This function is used to replace the existing characters of all the occurrences.
+REPLACE(string_expression,search_string,replacement_string)

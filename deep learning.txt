@@ -1,0 +1,252 @@
+1)What is deep learning?
+Deep learning is a subset of machine learning, inspired by the structure of human brain, used to train artificial neural networks.
+
+2)Why does deep learning differ from traditional machine learning?
+Feature extraction: Traditional machine learning relies on manual feature extraction, while deep learning automates this process, excelling with large datasets.
+Performance with big data: Deep learning algorithms improve with larger datasets, outperforming traditional methods in complex tasks like image and speech recognition, and natural language processing. 
+
+3)what is a neural network?
+A neural network is a computational model designed to simulate human brain's biological neural network.
+structure and function: consists of interconnected layers of neurons, adjusts connections during training, and is instrumental in complex tasks like image and speech recognition.
+
+4)Explain the concept of neurons in deep learning?
+Neural networks consists of input, hidden, output layers each layer transforming data into more abstract forms.
+
+5)Explain architecture of neural network?
+
+6)what is a activation function in neural networks?
+Activation functions determine the output of neurons and introduces non-linearity into neural networks.
+They enable neural networks to learn complex patterns and perform advanced tasks.
+
+7)Name few activation functions and describe them?
+sigmoid activation function-
+f(z)=1/(1+e**(-z)) gives the output values between 0 to 0.5 and 0.5 to 1.
+tanh activation function-
+f(z)={(e**(z)-e**(-z)/e**(z)+e**(-z)} gives the output values between -1 to 0 and 0 to 1.
+they both used before output layers.
+
+ReLU-(Rectified Linear Unit)
+f(z)=0 if z<0
+f(z)=z if z>=0
+
+Leaky ReLU
+f(z)=0.01 if z<0
+f(z)=z if z>=0
+they both used in hidden layers
+
+8)What happens if you do not use any activation functions in neural networks?
+Absence of activation function reduces a neural network to simple linear regression model. The network becomes incapable of handling complex non-linear  data, limiting its real-world applicability.
+
+9)Describe how training of basic neural network works?
+Forward pass:
+Input data is processed through neurons, using weighted sums and activation functions, to produce an output.
+Backward pass and optimization:
+the network calculates the error, then adjusts weights and biases via backpropagation and gradient descent to minimize this error
+
+10)what is gradient descent?
+Gradient descent is an optimization algorithm used to minimize cost function in machine learning models. It iteratively adjusts model parameters, guided by the cost function's gradient, with learning rate determining the step size.
+
+11)What is the function of an optimizer in deep learning?
+An optimizer is a function or an algorithm that adjusts the attributes of a neural networks, such as weights and learning rates. Thus it helps in reducing overall loss and improving accuracy.
+
+12)What is back propagation, and why is it important in deep learning?
+Backpropagation is a method for training neural networks, allowing them to learn from errors by updating parameters.
+Utilizes the chain rule and partial derivatives to calculate the gradient for each parameter, guiding efficient parameter updates.
+
+13)How is back propagation different from gradient descent?
+backpropagation- calculates the gradient of the loss function for each weight in the network.
+gradient descent- Optimization algorithm that uses this gradient to adjust weights and minimize loss.
+
+14)Describe what vanishing gradient problem is and it's impact on NN?
+Vanishing gradient happens  when gradients of network's loss function w.r.t weight parameters become very small, approaching to zero as they are propagated back through deep neural network during training.
+As a result of these vanishing gradients, the weights in the earlier layers of the network receive very little update, if any at all, making it difficult for the model to learn effectively.
+
+15)what is connection between various activation functions and vanishing gradient problem?
+sigmoid and tanh have high saturation as they can cause vanishing gradient problem.
+relu and leaky relu does not cause the problem.
+
+15.1)Describe what exploding gradient problem is and it's impact on NN?
+This exploding gradient problem occurs during training of deep neural networks. It happens when the gradient of the network's loss, in relation to parameters, becomes excessively large. This can cause numerical instability and prevent the network from converging to a suitable solution.
+ 
+16)There is a neuron in the hidden layer that always results in a large error in backpropagation. What could be the reason for this?
+Improper weight initialization
+Unsuitable learning rate
+Inappropriate activation function
+Poor data preprocessing
+suboptimal network architecture.
+
+17)What do you understand by a computational graph?
+it is used for visualizing the complex structures of data.
+A computational graph is a directed graph where the nodes represent mathematical operations edges represent the flow of data between operations.
+
+18)What is a loss function and what are different type of loss functions used in deep learning?
+A loss function, also known as a cost function or error function, measures the difference between a models predicted output and the actual target values. It's a crucial component of deep learning, and the goal is to minimize the loss.
+Mean squared error
+Mean absolute error
+Binary cross-entropy
+Categorical cross-entropy
+sparse categorical cross-entropy
+
+19)What is cross entropy loss function and how it is called in the industry?
+Cross-entropy loss, also known as log loss, measures the performance of a classification model whose output is a probability value between 0 and 1.
+It effectively measures the difference between predicted and actual probability distributions, crucial for classification accuracy.
+
+20)Why is cross-entropy preferred as the cost function for multi-class classification problems?
+It minimizes the distance between two probability distributions- predicted and actual. It acts as a classifier  which predicts weather the given animal is dog, cat, horse with probability associated with each other.
+
+21)What is SGD and why it's used in training neural networks?
+Stochastic gradient descent is an optimization algorithm used to minimize the loss function in neural networks, updating parameters with randomly selected singles or a small batch of samples.
+
+22)Why does stochastic gradient descent oscillate towards local minima?
+Oscillation cause: Caused by variability in gradient estimates from random datasets and the step size of the learning rate. The oscillation can help the algorithm escape local minima and potentially find better solutions.
+
+23)How GD is different from SGD?
+criteria                  GD                  SGD
+------------------------------------------------------
+Size of the data used  |  Entire dataset   | single data point or mini-batch
+per update             |                   |
+                       |                   |
+frequency of update    |  less frequent    |  more frequent
+                       |                   |
+Computational and      |  less efficient   |  more efficient
+memory efficiency      |                   |
+                       |                   |
+convergence pattern    |   steady          |   fluctuating
+
+24)How can optimization methods like GD be improved? What is the role of the momentum term?
+SGD with momentum aims accelerate convergence towards the global minimum and to reduce oscillatory movements.
+
+25)Compare batch gradient descent, minibatch gradient descent, and stochastic gradient descent.
+Batch Gradient Descent-
+Uses the entire dataset for each update, offering precision but is computationally intense.
+Minibatch Gradient Descent-
+processes in smaller batches, balancing efficiency and stability.
+Stochastic Gradient Descent-
+Updates parameters for each data point or small batch, leading to fast but variable updates.
+
+26)How to decide batch size in deep learning?(considering both too small and too large)
+Larger batch sizes result in faster progress in training, but don't always converge as fast, Less noise.
+Smaller batch sizes train slower, but can converge faster, more noise.
+                      
+27)How does the batch size impact the performance of a deep learning model?
+Training time and memory:
+smaller batches=longer training, less memory.
+larger batches=more memory.
+convergence and learning:
+smaller batches=better generalization, unstable convergence.
+larger batches=stable, risk of poor generalization.
+
+28)What is hessian, and how can it be used for faster training? What are its disadvantages?
+Hessian matrix: Uses second-order derivatives for curvature insights, aiding precise optimization and faster convergence.
+Disadvantages: High computational cost, significant memory use, impractical for large models.
+
+29)Discuss the concept of an adaptive learning rate. Describe adaptive learning methods?
+Adaptive learning rate: Dynamically adjusts step size during training for better convergence and handling diverse data.
+examples:
+RMSprop-Root mean square propagation
+ADAM
+AdaGrad
+
+30)What is RMSprop and how does it work?
+RMSprop: An adaptive learning rate method that adjusts rates based on recent gradient magnitudes.
+Reduces learning rate for large gradients and increase it for smaller ones, stabilizing convergence.
+
+31)What is Adam and why is it used most of the time in NNs?
+Adam is an adaptive optimization algorithm known for dynamic learning rate adjustments based on first and second moment of gradients.
+
+32)What is AdamW and why it's preferred over Adam?
+Weight decay controls the effective learning rate for different layers and neurons. This rotational behaviour drastically differs between Adam with L2 regularization compared to Adam with decoupled weight decay(AdamW) and seems to be the reason AdamW performs better in practice.
+
+33)What is Batch Normalization and Why it's used in NN?
+Normalizes neuron activations per batch, ensuring values are centered around zero.
+Leads to stable, faster training and higher learning rates.
+Applied batch-wise, adjusting mean and standard deviation of activations.
+Benefits: Accelerates training, reduces initialization sensitivity, and provides a regularization effect.
+
+34)What is layer normalization, and why it's used in NN?
+LayerNorm normalizes across all features within each training example, beneficial for RNNs and transformers.
+
+35)What are residual connections and their functions in NN?
+Residual connections are a type of skip-connection, are a technique used to improve neural network architecture. They work by adding the output of a previous layer to the input of a later layer. This allows the later layer to learn the difference between the input and output, instead of the entire function. Technique to prevent vanishing gradients.
+
+36)What is Gradient clipping and their impact on NN?
+A technique to prevent exploding gradients in neural networks.
+Involves clipping the gradients to a maximum value during backpropagation.
+Leads to more stable training and is particularly important for RNNs and LSTMs.
+
+37)What is Xavier initialization and why it's used in NN?
+Method for initializing neural network weights, maintaining consistent variance across layers.
+Reducing risk of vanishing/exploding gradients, promoting stable and efficient training. Particularly effective with tanh and sigmoid activation functions.
+t=sqrt(input neurons + output neurons)
+weights ~ uniform(-sqrt(6)/t, sqrt(6)/t)
+Var(W)=2/t
+
+38)What are different ways to solve vanishing gradient?
+Activation functions
+Weight initialization
+Batch normalization
+Residual connections
+Architecture choices
+
+39)What are ways to solve exploding gradients?
+Gradient clipping
+Weight regularization
+Activation functions
+Weight initializations
+Batch normalizations 
+
+40)what happens if the neural networks is suffering from overfitting relate to weights in NN?
+Large weights in a neural networks make the model very sensitive to its input data including noise. Model follows training data too closely and doesn't generalise well to new data.
+
+41)What is dropout and how does it work?
+Dropout is a regularization technique that randomly 'drops out' or deactivates a subset of neurons in a neural network layer during each training iteration.
+
+42)How does dropout prevent overfitting in NN?
+Randomly deactivates neurons during training to reduce dependency
+Encourages feature redundancy and generalization.
+
+43)Is dropout like random forest?
+Both dropout and random forest aim to improve model robustness and reduce overfitting by introducing randomness and diversity in the training process.
+Dropout is a technique within a single model to prevent overfitting, while random forest combines multiple models to achieve a more accurate and stable prediction.
+
+44)What is the impact of dropout on the training vs testing?
+During testing, all neurones are active unlike training where p% of the neurons are dropped/deactivated. so to make compensation and keep consistency in input size to NN we need to scale the activations in testing by (1-P).
+if p=0.2(20% dropout rate)
+scale activations in testing by (1-p)=0.8.
+
+45)What are L2/L1 regularizations and how do they prevent overfitting in NN?
+L1 and L2 are regularization techniques used in neural networks to prevent overfitting by controlling the magnitude of weights and by shrinking them  towards 0.
+By keeping the weights small and regularized, both methods ensure that the model does not overfit to the training data and can generalize better to unseen data.
+
+46)What is difference between L1 and L2 regularizations in NN?
+L2 Regularization(Ridge): Adds squared weight values to the loss function(L2 Norm), ensuring smoother parameter values.
+L1 Regularization(Lasso): Adds absolute weight values(L1 Norm) to the loss function, leading to sparse models.
+L1 good in feature selection and high sparsity
+L2 good in smoothing and low sparsity.
+
+47)How do L1 vs L2 regularization impact the weights in NN(compare impact on large vs small weights penalization)?
+L2 adds the square of the weights as a penalty > larger weights are penalized more heavily than smaller weights.
+Large vs. Small weights: The impact of L2 is more pronounced on larger weights, which are drastically reduced, while smaller weights are penalized less severely. L2 tends to distribute the error among all the weights, leading to smaller, non-zero weights.
+
+L1 significantly reduces the magnitude of the weights.
+Large vs. Small weights: Reduces some weights, particularly smaller ones, to absolute zero, effectively removing those features from the model. Larger weights may be reduced but not eliminated.
+
+48)What is the curse of dimensionality in ML or AI?
+The curse of dimensionality refers to the various problems and complexities that arise when working with high-dimensional data.
+Data sparsity
+Computational challenges
+Risk of overfitting
+Distance measurement issues
+
+49)How deep learning models tackle the curse of dimensionality?
+Feature learning
+Dimensionality reduction techniques
+Regularization methods CNN and pooling layers.
+
+50)What are generative models, give examples?
+Generative models aim to model how data is generated. They learn the joint probability distribution P(X,Y), where X(features) and Y(labels)
+Model underlying data distribution
+Generate new data instances
+Predict probabilities
+Unsupervised learning tasks
+ex: Bayesian models, hidden Markov, vae and gan.

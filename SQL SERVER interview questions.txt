@@ -1,0 +1,90 @@
+1)Mention the differences between SQL SERVER AND MYSQL.
+
+SQL Server:
+Developed by Microsoft
+Licensed Software
+Doesn't allow any kind of database file manupluation while running.
+Allows query cancellation mid-way in the process.
+While backing up the database.it doesn't block the database.
+Takes a large amount of operational storage space.
+Avialable in express and custom mode.
+
+MYSQL:
+Developed by Oracle.
+Open Source software
+Allows database file manuplation while running.
+Doesn't allow query cancellation mid-way in the process.
+While backing up the databse. It blocks the database.
+Takes less amount for operational storage space.
+Avilable in MYSQL community edition and MYSQL enterprise edition.
+
+2)What do you understand by SQL Server Agent?
+A windows server which is used to schedule jobs and execute jobs.
+Here, each job has one or more steps, and each steps contains a task.
+The main components of SQL server agent are
+Jobs
+Schedules
+Operators
+Alerts
+
+3)Mention the different authentication modes in SQL Server.
+Authentication mode is used for authenticating a user in this SQL server.
+The authentication mode is selected while setting up a database.
+The different authentication modes offer by the server are
+1)Windows Authentication Mode
+2)Mixed Mode
+
+4)Mention the differences between local and global temporary tables.
+Local temporary table:
+These tables only exists in the duration of the connection or duration of that statement.
+Syntax: CREATE TABLE #<tablename>
+Global Temporary Variable:
+These tables exists permanently in database and only the rows get deleted when the connection get closed.
+SYNTAX: CREATE TABLE ##<tablename>
+
+5)How can you check the version of SQL server?
+SELECT @@VERSION
+@@VERSION gives the output as one nvarchar string.
+
+6)What is single-user mode and what are the steps you should follow to start SQL server in single-user mode?
+Used when you want to recover data from other database systems or may want to change server configurations.
+.The following events occur on starting the databse in single user mode:
+A single user connects to the server.
+The checkpoint process is not executed since it is executed by default at the start-up.
+.To start SQL server in single-user mode use the command
+sqlcmd -m
+.To connect through the query editor in management studio use:
+-m"Microsoft SQL Server Management Studio - Query"
+
+7)What is SQL server profiler?
+An interface used to create and manage traces. It also analyses and replays the trace results.Here, events are saved in a trace file which later analysed or used to replay a specific series of steps while debugging an issue.
+
+You can use SQL server profiler for activities such as:
+Finding the root cause of problem
+Monitoring the performance of the sql server.
+Diagnosing the slow querys
+Capturing a series of SQL statements causing problem.
+Helps in correlating performance counters to debug issues.
+
+8)What is the TCP/IP port on which SQL server runs?
+1433
+
+9)What are subqueries in SQL server?Explain its properties?
+A subquery is a query inside another query where a query is defined to retrive data or information back from the database.
+In a subquery, the outer query is called as the main query whereas inner query is called subquery.
+Subquerys are always executed first and the result of the subquery is passed on to the main query.
+It can be nested inside a SELECT,UPDATE or any other query.
+A subuery can also use any comparison operators such as >,< or =.
+
+10)How do you start single user mode in clustered installations?
+Go to advanced properties and remove -m startup parameter.
+Now, put the SQL server resource offline.
+Issue the following command from the command prompt and make sure you are at the current owner node of the group:
+net start MSSQLSERVER /m
+Next you want to verify from the cluster administrator or failover cluster management console that SQL resource is still offline or not.
+Then connect to the SQL server by using the following command and do the required operation.
+SQLCMD -E -S<servername>
+once an operation is complete, you have to close the command prompt and then bring back the sql and other resources online through cluster administrator
+
+11)What do you understand by replication in SQL server?mention the different types of replication in SQL server?
+A process to synchronize the data across multiple servers.This is genarally done by replica set, and these sets provide multiple copies of data with redundancy and high avilability on different servers.

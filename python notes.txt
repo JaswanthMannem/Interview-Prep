@@ -1,0 +1,1094 @@
+python strings:
+It can be single quote or double quotes.
+"hello" or 'hello'.
+we can also write multi line string.
+It can be written by using three double quotes or three single quotes.
+length of a string:
+         len(str)
+we can check string:
+         txt="He is good"
+         print("good" in txt)
+keyword we used is "in".
+if the string we given is present in the string we can get true or we get false.
+we can also use "if".
+it finds the text in the given string.
+we can also check the text not present in the string by using "not in".
+#Reversing a string
+a="Jaswanth"
+print(a[::-1])   #htnawsaJ
+string slicing:
+txt="hello"
+1)print(txt[1:3])
+2)print(txt[:3])
+3)print(txt[2:])
+4)print(txt[-4:-1])
+output:
+1)el
+2)hel
+3)llo
+4)ell
+Pyhon modify strings:
+#converting char to uppercase .upper() is used.
+a="Hello"
+print(a.upper())   #"HELLO"
+#converting char to lowercase .lower() is used.
+a="Hello"
+print(a.lower())    #"hello"
+#Removing whitespaces we use .strip()
+It is used to remove unwanted spaces befor and after the text not in between the text.
+a="hello world"
+print(a.strip())    #hello world
+a="    Hello World    "
+print(a.strip())     #Hello World
+#replacing a string using .replace( , )
+a="hello"
+print(a.replace("h","j")  #"jello
+"spliting the strings using .split("")
+a="a,b,c"
+print(a.split(","))   #it splits the string in the form of list.
+#['a','b','c']
+a="a,b,c"
+x,y,z=a.split(",")
+print(x,y,z)     #a b c
+
+#if we want to convert datatypes of the data present int the list we use map.
+x=["1","2","3"]
+y=list(map(int,x))     #it converts any datatype to the specific datatype.
+print(y)
+
+some other string modifiers:
+count()  #counts the appereance of string
+find(value,start,end) or find()   #returns the index of string we searched.
+isalnum()	#Returns True if all characters in the string are alphanumeric
+isalpha()	#Returns True if all characters in the string are in the alphabet
+isdigit()             #Returns True if all characters in the string are digits
+join()          #joins the string
+
+myTuple = ("John", "Peter", "Vicky")
+x = "#".join(myTuple)
+print(x)     #   John#Peter#Vicky
+string concatanation:
+a="Hello"
+b="world"
+print(a+b)    #Helloworld
+a=36
+b="hello"
+print(a+b)   #ERROR!
+#In the above case we want to format the string using .format()
+a=36
+b="Hello {}"
+print(b.format(a)) #Hello 36
+a=36
+print("Hello "+f"{a}")
+
+a=36
+b=45
+c=100
+d="{2} is greater than {1} and {0}."
+print(d.format(a,b,c))     #100 is greater than 45 and 36.
+
+a=36
+b=45
+c=100
+d="{} is greater than {} and {}."
+print(d.format(a,b,c))     #36 is greater than 45 and 100.
+
+a=36
+b="The doll is {:.4f} dollors"
+print(b.format(a))  #The doll is 36.0000 dollors
+python escape characters:
+if we want to insert a illegal character in a string. we want to insert a backslash before the illegal character.
+a="Jaswanth is "good""
+print(a)     #ERROR!
+a="Jaswanth is \"good\""
+print(a)     #Jaswanth is "good"
+
+isinstance( ,datatype)  #checks weather the given datatype is simlar to the data type we want.
+x=200
+print(isinstance(x,int))  #True
+#in boolean True False (first letter captial).
+
+Python operators:
+(different ones)
+//-floar division
+/- divison with decimals
+**-exponential
+>>-right shift
+<<-left shift
+&-and
+|-or
+^-xor
+~-inverts all the bits
+Python logical operators:
+these operators are used to combine conditional statements.
+and, or, not.
+Python identity operators:
+is and is not
+for example print(x is y) #if the object is same returns true although content is same.
+
+Python lists:
+Lists are used to store multiple items in a single variable.
+List items are changable, ordered, and contain duplicate values.
+List conctructor is also used to create lists.
+x=list(("jessi","jashu","jaswanth"))
+print(x)
+#we use insert method to insert() data at a specific index
+x=list(("jessi","jashu","jaswanth"))
+x.insert(2,"jersey")
+print(x)
+#we use append() method to add the item end of the list
+x=list(("jessi","jashu","jaswanth"))
+x.append("jersey")
+print(x)
+#if we want to join two lists we use extend() method
+a=["a","b","c"]
+b=["d","e","f"]
+a.extend(b)
+print(a)
+#with the extend() method we can not only extend lists we can also add iteratable objects like tuples dictionaries sets.
+a=["a","b"]
+b=("a","b")
+a.extend(b)
+print(a)
+#we can remove a item from list using remove()
+a=["a","b","c"]
+a.remove("a")
+print(a)
+#if there are duplicate values the first item get deleted when we use remove() method
+#if we want to remove a element at a specific index we use pop() method
+a=["a","b","c"]
+a.pop(1)      #if we didnot assign any index to pop it will pop out the last item in list #['a','b']
+print(a)     #['a','c']
+#we can also use del keyword for removing item at a specific index
+a=["a","b","c"]
+del a[0]      #we can also delete the entire list "del a"
+print(a)     #['b','c']
+#we can remove the all items in the list using clear() method
+a=["a","b","c"]
+a.clear()
+print(a)    #[]
+List comprehension:
+It offers shortest syntax for creating new lists by using existing lists
+example:
+list=[x for x in range(0,100) if x%2==0]
+print(list)
+example 2:
+list=["apple","bannana","mango"]
+newlist=[x if x!="bannana" else "orange" for x in list]
+print(newlist)
+#we can sort list using sort() method
+list=[5,4,3,2,1]
+list.sort()
+print(list)
+#we can sort list in a desending order
+list=[1,2,3,4,5]
+list.sort(reverse=True)
+print(list)
+# key function
+list=[1,2,3,1,4,1,3]
+x=max(list,key=list.count)
+print(x) 
+list=["jessi","apple","jaswanth"]
+print(max(list))         #jessi
+list=["jessi","apple","jaswanth"]
+print(max(list,key=len))     #jaswanth
+list=["jaswanth","jnfejfkwjefbehrbjerh","jessi","apple"]
+list.sort(key=len)      #['jessi', 'apple', 'jaswanth', 'jnfejfkwjefbehrbjerh']
+list.reverse()         #['jnfejfkwjefbehrbjerh', 'jaswanth', 'apple', 'jessi']
+print(list)
+#copying a list using copy method (if we assign list1 to list2 if we do changes in list1 it will atomatically change list2 so copy is used used to use two lists differently.
+a=[1,2,3]
+b=a.copy()
+print(b)
+#another way to copy using list method
+a=[1,2,3]
+b=list(a)
+print(b)
+#we can join list using +operator
+a=[1,2,3]
+b=["a","b","c"]
+c=a+b
+print(c)
+#if we donot intend to use empty list we can use append method and extend method
+#finding index in a list
+a=[1,2,3,4,5,6]
+print(a.index(3))
+#counting how many times a number is occured in a list
+list=[1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3]
+print(list.count(1))
+
+Python tuple:
+A tuple is collection of items which are ordered and unchangable.
+tuples can contain duplicate values.
+x=("apple",)   #we want to keep cooma after item when we have one item int he tuple.It helps it to recognize it is a tuple.
+print(x)
+#create tuples
+x=tuple(("a","b","c"))
+print(x)
+#if we want to change values of tuple we want to convert tuple into list then change and again convert to tuple.
+x=("a","b","c")
+y=list(x)
+y[1]="d"
+a=tuple(y)
+print(a)
+#we can add two tuples.
+#if we want to remove an item in tuple convert into list .remove() convert into tuple.
+x=("a","b","c")
+del(x)    #we can delete tuple using del keyword
+#unpacking a tuple
+x=("a","b","c")
+y,z,w=x
+print(y)
+print(z)
+print(x)
+#*astriek is used for storing multiple items as list
+x=("a","b","c","d","e","f")
+y,z,*w=x
+print(y)
+print(z)
+print(w)
+#tropical
+x=("a","b","c","d","e","f")
+y,*tropic,w=x
+print(y)
+print(tropic)
+print(w)
+#we can join our tuple using + and *
+x=("a","b","c")
+y=("d","e","f")
+print(x+y)
+z=x*2
+print(z)
+#count   syntax:tuple.count(value)
+#index syntax:tuple.index(value)
+
+python set:
+set is a collection which are unorderd,unchangable and unindexed.(do not allow duplicate values)
+#in set true and 1 are same set consider it as duplicates.
+#adding one list to another
+x={"a","b","c"}
+y={"d","e","f"}
+x.update(y)
+print(x)    #the object in update can be replaced by any iterable like list,tupledictionary.
+#removing a item in list is done by .remove() but when we want to remove item that is not in set it will cause error in this case we use .discard()
+#we can join two sets using .union() using third set.
+x={"a","2","c"}
+y={"1","2","3"}
+z=x.union(x)     #union-we will add the differnt item that is not in list one and not add unique item.
+print(z)
+x={"a","2","c"}
+y={"1","2","3"}
+x.update(y)     #{'a','2','c','1','3'}#update is used same as union.
+print(z)
+#if we want keep only duplicates we use intersection_update()
+x={"a","2","c"}
+y={"1","2","3"}
+x.intersection_update(y)   #{'2'}    #.intersection() also plays same role we do this with a new set (z=x.intersection())
+print(x)
+#now we want keep not duplicate values
+x={"a","2","c"}
+y={"1","2","3"}
+x.symmetric_difference_update(y)    #{'a','c','1','3'}   #symmentric_update is used when a new set can be used z=x.symmentric_update()
+print(x)
+#now we get the unique items in set 1 and duplicate will be removed and set 2 is not shown .difference_update()
+x={"a","2","c"}
+y={"1","2","3"}
+x.difference_update(y)      #{'a','c'}
+
+Python dictionaries:
+dictionories are changable,orderd and do not contain duplicates.
+#we use get() to access values with keys.
+x={
+"name":"jessi",
+"age":18,
+}
+y=x.get("age")
+print(y)        #18
+y=x.keys()
+print(y)        #dict_keys(['name', 'age'])
+y=x.values()
+print(y)        #dict_values(['jessi', 18])
+#if we want to add a new key-value
+x["rollno"]="20501a05a9"
+#by using .items() we can get key-value pair
+x.items()
+#we can change items by using update method
+x={
+"name":"jessi",
+"age":18,
+}
+x.update("color":"red")
+print(x)          #{'name': 'jessi', 'age': 18, 'color': 'red'}
+#removing items in a dictionary
+x.pop("name")      #removes the key value pair having name as key
+x.popitem()        #removes the previosly inserted pair
+del x["name"]      #deletes the specific key value pair
+del x              #delete the entire dictionary
+x.clear()          #clears the items in dictionary
+#copying dictionaries
+y=x.copy()         #copying items form x to y
+y=dict(x)          #copying items form x to y
+#nested dictionary
+x={"a":1,"b":2}
+y={"c":x}
+print(y["c"]["a"])     #1
+
+#python function:
+function is a block of code it runs when it is called.
+if we want to take two or more parameters under single parameter we want to use arbitary constant-*args.it will take all parameters as tuple.
+def my_names(*name):
+	print("my name is "+name[1])
+my_names("jessi","jaswanth","jashu")
+#function definition can not be empty,if for some reason it is empty we can use pass.
+
+python lambda function:
+lambda is a anonymus function
+its syntax is:
+	lambda arguments:expression
+def math(x):
+	return lambda a:a*x
+y=math(10)
+z=math(20)
+print(y(2))   #20
+print(y(10))  #100
+
+python class object:
+class Jessi:
+	def __init__(self,name,age):   #self parameter is a current instance of a class
+		self.x=name            #init constructors used to initialize using object state
+		self.y=age
+p=Jessi("Jaswanth",19)
+print(p.x)     #Jaswanth
+print(p.y)     #19
+#2
+class Jessi:
+	def __init__(self,name,age):
+		self.x=name
+		self.y=age
+	def __str__(self):
+		return f"{self.x}({self.y})"
+p=Jessi("Jaswanth",19)
+print(p)
+#3
+class Jessi:
+	def __init__(self,name,age):
+		self.x=name
+		self.y=age
+	def myfun(self):
+		print("my name is "+self.x+" and my age is "+f"{self.y}")
+p=Jessi("Jaswanth",23)
+p.myfun()
+#if we want to delete object property we use "del p.age"
+#if we want to delete object we use "del p"
+"class definitions canot be empty if we want to leave it just add "pass"
+
+Python Inheritance:
+#it is used to inherit methods and properities from one class to another.
+#if we want to create a child class we want to use __init__() function but when we use it we are no longer able to access parent class.
+#because the __init__ in child class overrides the __init__ in parent class.
+class Jessi:
+	def __init__(self,name,age):
+		self.x=name
+		self.y=age
+	def myfun(self):
+		print("My name is "+self.x+f" my age is {self.y}")
+class Jaswanth(Jessi):
+	def __init__(self,name,age):
+		Jessi.__init__(self,name,age)
+p=Jaswanth("jashu",22)
+p.myfun()
+#by using super function we can inherit all the methods and properties no parent class name is required.
+class Jessi:
+	def __init__(self,name,age):
+		self.x=name
+		self.y=age
+	def myfun(self):
+		print("My name is "+self.x+f" my age is {self.y}")
+class Jaswanth(Jessi):
+	def __init__(self,name,age):
+		super().__init__(name,age)  #we donot require a self in this because it automatically inherits all properties and methods
+p=Jaswanth("jashu",22)
+p.myfun()
+#2
+class Jessi:
+	def __init__(self,name,age):
+		self.x=name
+		self.y=age
+	def myfun(self):
+		print("My name is "+self.x+f" my age is {self.y}")
+class Jaswanth(Jessi):
+	def __init__(self,name,age):
+		super().__init__(name,age)
+		self.roll="20501a05a9"
+p=Jaswanth("jashu",22)
+p.myfun()
+print(p.roll)
+#3
+class jessi:
+	def __init__(self,name,age):
+		self.x=name
+		self.y=age
+	def myfun(self):
+		print(f"my name is {self.x} my age is {self.y}")
+class jashu(jessi):
+	def __init__(self,name,age,year):
+		jessi.__init__(self,name,age)
+		self.z=year
+	def fun(self):
+		print(f"my name is {self.x} my age is {self.y} and born in {self.z}")
+p=jashu("jaswanth",22,2003)
+p.fun()
+
+Python iterators:
+An iterator is a object that contain countable number of items.
+x="banana"
+y=iter(x)
+print(next(y))
+print(next(y))
+print(next(y))
+print(next(y))
+print(next(y))
+print(next(y))
+
+Python polymorphism:
+#it refers to as containing many classes under same method name.
+class car:
+	def __init__(self,name,model):
+		self.name=name
+		self.model=model
+	def move(self):
+		print("ride")
+class boat:
+	def __init__(self,name,model):
+		self.name=name
+		self.model=model
+	def move(self):
+		print("sail")
+class plane:
+	def __init__(self,name,model):
+		self.name=name
+		self.model=model
+	def move(self):
+		print("fly")
+car1=car("volvo","A")
+boat1=boat("sailer","B")
+plane1=plane("airindia","C")
+for i in (car1,boat1,plane1):
+	i.move()
+
+python scope:
+A variable only available inside the region it is created.
+python module:
+a file containing set of functions including your application.
+
+Python modules:
+#there are two different types of python modules.
+1)user definend-which we created by us
+2)inbuilt-which were part of pyhton library
+we can import as 5 ways
+1)import module
+2)import module as mod
+3)from module import x,y,z
+4)from module import *
+5)from module import x
+
+Python Json:
+#used for storing or exchanging of data.
+#json-java script object notation.
+#converting json into python
+import json
+x='{"name":"jaswanth","age":22}'
+y=json.loads(x)
+print(y)
+print(y["name"])
+#converting python into json
+import json
+x={
+	"name":"jaswanth",
+	"age":20
+}
+y=json.dumps(x)  #in this we can use indent and seperators()#indent=4 ,separators(".","=")
+print(y)
+
+python regular expressions:
+#1
+import re
+txt="my jashu is jaswanth"
+y=re.findall("jas",txt)
+print(y)
+#2
+import re
+txt="my jashu is jaswanth"
+y=re.split("\s",txt)
+print(y)
+#3
+import re
+txt="my jashu is jaswanth"
+y=re.split("\s",txt,1)   #splits only one time
+print(y)
+#4
+import re
+txt="my jashu is jaswanth"
+y=re.sub("jashu","name",txt)  #substitiutes
+print(y)
+#5
+import re
+txt="my jashu is jaswanth"
+y=re.search("jashu",txt)
+print(y.start())
+print(y)
+#6
+import re
+txt="my jashu is jaswanth"
+y=re.sub("jashu","name",txt,1)  #subs only once
+print(y)
+
+python pip:
+#pip is a pacakge manager for python packages
+
+Python numpy:
+Numpy is used for working with arrays.
+
+import numpy as np
+rr=np.array([1,2,3,4])
+x=np.where(rr==2)
+print(x)   #to find element of the index
+import numpy as np
+rr=np.array([1,2,3,4])
+x=np.searchsorted(rr,2)
+print(x)     #binary search procedure
+import numpy as np
+rr=np.array([4,3,2,1])
+print(np.sort(rr))
+
+seaborn module useful for visual representation.
+
+dtype-datatype
+ndim-number of dimesnions
+astype()-chnaging datatypes
+ndmin
+np.shape,np.reshape(,)
+np.array_split(arr,3)-it is used to split the array.
+Numpy has universal functions like ufunc
+np.add(x,y)
+np.subtract()
+np.multiply()
+np.divide()
+np.power()
+np.mod()
+np.remainder()
+absolute()
+trunc(),around(),fix(), #rounding decimal values
+floor()
+ceil()
+this are for lists
+
+sum()
+cumsum()
+prod()
+cumprod()
+diff()
+finding lcm:
+import numpy as np
+x=3
+y=5
+z=np.lcm(x,y)
+print(z)
+
+import numpy as np
+x=np.array([3,4,5])
+y=np.lcm.reduce(x)  #when there is a list we use reduce method
+print(y)
+
+import numpy as np
+x=np.arange(1,11)
+y=np.lcm.reduce(x)
+print(y)
+
+gcd:
+import numpy as np
+x=3
+y=6
+z=np.gcd(x,y)
+print(z)
+
+np.unique()   #creates unique array
+import numpy as np
+x=np.array([3,6,9])
+y=np.gcd.reduce(x)
+print(y)
+
+                                                 Python pandas
+
+pandas is used to analyze the data and used to make conclusions based on statistical theories.
+pandas are used to clean messy data and make it relatable and relevent.
+
+import pandas as pd
+
+car={
+	'company':["BMW","Audi","Lykan hyper sport"],
+	'model':["R8","T4","Lykan"]
+}
+x=pd.DataFrame(car)
+print(x)
+
+output:
+             company  model
+0                BMW     R8
+1               Audi     T4
+2  Lykan hyper sport  Lykan
+
+series:
+pandas series is like a column in a table.
+
+import pandas as pd
+a=[1,7,2]
+x=pd.Series(a)
+print(x)
+output:
+0    1
+1    7
+2    2
+dtype: int64
+
+import pandas as pd
+a=[1,7,2]
+x=pd.Series(a,index=[3,2,1])
+print(x)
+output:
+3    1
+2    7
+1    2
+dtype: int64
+
+pandas use loc() attribute to locate one or more specified data.
+
+import pandas as pd
+car={
+	"company":["benz","audi","BMW"],
+	"model":["mercedes","R8","T4"]
+}
+x=pd.DataFrame(car)
+print(x)
+print(x.loc[[0,1]])
+print(x.loc[2])
+
+output:
+  company     model
+0    benz  mercedes
+1    audi        R8
+2     BMW        T4
+  company     model
+0    benz  mercedes
+1    audi        R8
+company    BMW
+model       T4
+Name: 2, dtype: object
+
+in pandas if we want access data stored in a file we use "read_csv()"
+import pandas as pd
+x=pd.read_csv("data.csv")
+print(x)  #we get only 5 dataframes if the data is big
+print(x.to_string())   #we get all the dataframes
+
+if we want to check how many rows of data we can see by x.options.display.max_rows
+import pandas as x
+print(x.options.display.max_rows)
+
+we can also acces json files
+csv=data.csv()    #read_csv()
+json=data.json()  #read_json()
+
+we can use head() to acess data.
+head() gives first 5 rows.
+if we given a specific number to head it will return the number of data.
+import pandas as pd
+x=pd.read_csv("data.csv")
+
+print(x.head())
+
+print(x.head(15))
+
+print(x.tail())
+
+print(x.info())   #this gives information about data .Null values have great efffect when analyzing data so they shoud be removed.the info gives us how many non null vlaues present in data.
+
+empty results can give wrong result when you anlyze the data.
+x.dropna()   #it removes empty cells.but changes will not occur in main dataframe.
+import pandas as pd
+x=pd.read_csv("data.csv")
+y=x.dropna()
+print(y.to_string())
+
+#if want to change the orginal dataframe.
+import pandas as pd
+x=pd.read_csv("data.csv")
+x.dropna(inplace=True)
+print(x.to_string())
+
+#if we want to fill the empty values with some thing we use fillna()
+import pandas as pd
+x=pd.read_csv("data.csv")
+x.fillna(130,inplace=True)
+print(x.to_string())
+
+#if we want to fill the empty cell in a separate field.
+import pandas as pd
+x=pd.read_csv("data.csv")
+x["Calories"].fillna(128,inplace=True)
+print(x.to_string())
+#we can also fill empty fileds using mean, median and mode
+import pandas as pd
+x=pd.read_csv("data.csv")
+y=x["Calories"].mean()
+x["Calories"].fillna(y,inplace=True)
+print(x.to_string())
+
+import pandas as pd
+x=pd.read_csv("data.csv")
+y=x["Calories"].median()
+x["Calories"].fillna(y,inplace=True)
+print(x.to_string())
+
+import pandas as pd
+x=pd.read_csv("data.csv")
+y=x["Calories"].mode()[0]
+x["Calories"].fillna(y,inplace=True)
+print(x.to_string())
+
+#if we want to handle date related issues we use to_datetime()
+import pandas as pd
+x=pd.read_csv("data.csv")
+x["Date"]=pd.to_datetime(x["Date"])
+print(x.to_string())
+
+#drop specific empty values
+import pandas as pd
+x=pd.read_csv("data.csv")
+x["Date"]=pd.to_datetime(x["Date"])
+x.dropna(subset=["Date"],inplace=True)
+print(x.to_string())
+
+#if there is a typo mistake in data we can easily replace it
+import pandas as pd
+x=pd.read_csv("data.csv")
+x["Calories"].fillna(128,inplace=True)
+x["Date"]=pd.to_datetime(x["Date"])
+x.dropna(subset=["Date"],inplace=True)
+x.loc[7,"Duration"]=45
+print(x.to_string())
+
+#if the date is large 
+import pandas as pd
+x=pd.read_csv("data.csv")
+x["Calories"].fillna(128,inplace=True)
+x["Date"]=pd.to_datetime(x["Date"])
+x.dropna(subset=["Date"],inplace=True)
+for i in x.index:
+	if x.loc[i,"Duration"]>120:
+		x.loc[i,"Duration"]=120
+print(x.to_string())
+
+#if we want to delete the null value fields in large data
+import pandas as pd
+x=pd.read_csv("data.csv")
+x["Calories"].fillna(999,inplace=True)
+x["Date"]=pd.to_datetime(x["Date"])
+x["Date"].fillna("2023-10-15 00:00:00",inplace=True)
+for i in x.index:
+    if x.loc[i,"Duration"]>100:
+        x.loc[i,"Duration"]=100      or    x.drop(i,inplace=True)   #drop is used to drop any field according to the condition and dropna is used to drop only null values in a field.
+print(x.to_string())
+
+#we can also find if there are any dupicates in our data using .duplicated()
+import pandas as pd
+x=pd.read_csv("data.csv")
+x["Calories"].fillna(x["Calories"].mean(),inplace=True)
+x["Date"]=pd.to_datetime(x["Date"])
+x["Date"].fillna("2023-10-15 00:00:00",inplace=True)
+for i in x.index:
+	if x.loc[i,"Duration"]>120:
+		x.loc[i,"Duration"]=120
+y=x.duplicated()
+print(y)
+x.drop_duplicates(inplace=True)  #we can drop this using drop_duplicates(inplace=True)
+print(x.to_string())
+
+#we can find relation between all columns in a table using corr()
+import pandas as pd
+x=pd.read_csv("data.csv")
+print(x.corr())
+
+#ploting in pandas
+
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import pandas as pd
+import matplotlib.pyplot as plt
+x=pd.read_csv("data.csv")
+x.plot()
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+
+#scattering points based on two fields
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import pandas as pd
+import matplotlib.pyplot as plt
+x=pd.read_csv("data.csv")
+x.plot(kind="scatter",x="Duration",y="Calories")
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+
+#Data is represented in the form of histogram
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import pandas as pd
+import matplotlib.pyplot as plt
+x=pd.read_csv("data.csv")
+x["Duration"].plot(kind="hist")
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+
+                                                 scipy in python
+scipy is used to known as scientific python
+scipy is similar to numpy but it is optimized and more fuctions are added.
+#In scipy we import constants for pi,and some other functions.  #from scipy import constant
+#in scipy optimizers are used to find minimum values of function root of the equation.  from scipy.optimizers import root||minimize
+sparse date-in where most of items is zero.
+dense array-opposite to sparse date
+
+                                               matplotlib in python
+it is a low level graph plotting that is used for visualizatian utiliy.
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import numpy as np
+x=np.array([0,6])
+y=np.array([0,250])
+plt.plot(x,y)
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+
+#plotting with out line using "o"
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import numpy as np
+x=np.array([0,199])
+y=np.array([100,299])
+plt.plot(x,y,"o")
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+
+#multiple points
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import numpy as np
+x=np.array([1,3,5,2])
+y=np.array([10,3,8,1])
+plt.plot(x,y)
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+
+#default axis
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import numpy as np
+x=np.array([5,9,3,10])
+plt.plot(x)
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+                                                   python matplotlib
+It is used for low level graph plottting used to serve visualization utility.
+we can also adjust marker size(ms)
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.array([1,5,2,0])
+plt.plot(x,marker="o",ms=20)
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+
+#markeredgecolor-mec
+#markerfacecolor-mfc
+
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.array([3,20,7,14])
+plt.plot(x,marker="*",ms=20,mec='b',mfc='hotpink')
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+
+we can also change style of the lines
+linestyle=dashed,dotted
+ls=:,--,-.
+#we can also adjust size of line using linewidth
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.array([3,10,7,6])
+y=np.array([1,5,3,11])
+plt.plot(x,linestyle='dotted',linewidth=10)      or      plt.plot(x,ls=':')
+plt.plot(y,linestyle='dashed',linewidth=10)      or      plt.plot(y,ls='--')
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+#labeling
+# we can also add font using fontdict
+#we can  align position of text using loc
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.array([2,5,3,9])
+y=np.array([1,6,8,5])
+plt.plot(x,y)
+font1={'family':'serif','color':'hotpink','size':20}
+font2={'family':'serif','color':'red','size':15}
+plt.title("I don't care",fontdict=font1,loc='left')
+plt.xlabel("Kesari",fontdict=font2)
+plt.ylabel("LEO",fontdict=font2)
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+#matplotlib grid
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.array([1,2,3,4,5])
+y=np.array([1,2,3,4,5])
+plt.plot(x,y)
+plt.title("Jaswanth",loc='left')
+plt.xlabel("jasw")
+plt.ylabel("anth")
+plt.grid(color='green',ls='-.',linewidth=1)
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+
+#subplot
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.array([1,2,3,4,5,6])
+plt.subplot(2,1,1)         or     plt.subplot(1,2,1)
+plt.plot(x)
+plt.title("My X")
+y=np.array([1,2,3,4,5,6,7])
+plt.subplot(2,1,2)         or     plt.subplot(1,2,2)
+plt.plot(y)
+plt.title("My Y")
+plt.suptitle("Girlfriends")
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+
+#scatter
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.array([1,2,3,4,5])
+y=np.array([9,8,7,6,0])
+plt.scatter(x,y,color='green')
+x=np.array([5,2,9,11,23])
+y=np.array([18,40,6,23,34])
+plt.scatter(x,y,color='red')
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+#using cmap='viridis'
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.array([5,8,3,9,14,19,26])
+y=np.array([41,35,28,50,52,59,63])
+color=np.array([0,10,20,40,50,70,90])
+sizes=np.array([10,50,90,100,150,200,400])
+plt.scatter(x,y,c=color,cmap='viridis',s=sizes,alpha=0.5)  #aplha is used for adjusting transparency
+plt.colorbar()
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+
+#bar
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import numpy as np
+import matplotlib.pyplot  as plt
+x=np.array(["a","b","c","d"])
+y=np.array([10,5,8,3])
+plt.subplot(1,2,1)
+plt.title("Greens")
+plt.bar(x,y,color='green',width=0.1)
+x=np.array(["a","b","c","d"])
+y=np.array([10,5,8,3])
+plt.subplot(1,2,2)
+plt.title("Pinks")
+plt.barh(x,y,color='hotpink',height=0.1)   #default height is always 0.8
+plt.suptitle("Colors")
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+
+#histograms
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.random.normal(170,8,250)
+plt.hist(x)
+plt.show()
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
+
+#pie
+import sys
+import matplotlib
+matplotlib.use("Agg")
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.array([3,7,10,4])
+labels=np.array(["jaswanth","jessi","jashu","jersey"])
+exp=np.array([0.4,0,0,0])
+plt.pie(x,labels=labels,startangle=90,explode=exp,shadow=True)   #we can label the pie graph using labels#we can also give colors for info
+plt.show()
+plt.legend(title='Devils Name')                           #startangle is used to make start at seperate position #explode helps to separate particular info
+plt.savefig(sys.stdout.buffer)
+sys.stdout.flush()
